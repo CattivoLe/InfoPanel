@@ -30,7 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         self.chooseImage()
-        print("test")
     }
     
     // MARK: - ImagePicker Controller
@@ -80,6 +79,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             session.channel.execute("sudo pkill fbi", error: nil)
         }
         session.disconnect()
+        imageView.image = UIImage(named: "online")
     }
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114E0BA82252029E0060AEA7 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114E0BA72252029E0060AEA7 /* NMSSH.framework */; };
 		1169AD9A22500A3700DF6D47 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169AD9922500A3700DF6D47 /* CloudKit.framework */; };
 		1169ADA022500BD700DF6D47 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169AD9F22500BD700DF6D47 /* Network.swift */; };
 		1169ADA222500BFC00DF6D47 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169ADA122500BFB00DF6D47 /* StartViewController.swift */; };
@@ -14,11 +15,12 @@
 		11D7EF3F2250088D00444321 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7EF3E2250088D00444321 /* AppDelegate.swift */; };
 		11D7EF442250088D00444321 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF422250088D00444321 /* Main.storyboard */; };
 		11D7EF462250088E00444321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF452250088E00444321 /* Assets.xcassets */; };
-		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; };
+		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D2AF64DC124690F9A93B6E0 /* Pods-InfoPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel.debug.xcconfig"; sourceTree = "<group>"; };
+		114E0BA72252029E0060AEA7 /* NMSSH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NMSSH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1169AD9822500A3400DF6D47 /* InfoPanel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InfoPanel.entitlements; sourceTree = "<group>"; };
 		1169AD9922500A3700DF6D47 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1169AD9F22500BD700DF6D47 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114E0BA82252029E0060AEA7 /* NMSSH.framework in Frameworks */,
 				46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */,
 				1169AD9A22500A3700DF6D47 /* CloudKit.framework in Frameworks */,
 			);
@@ -123,6 +126,7 @@
 		FE217496ACF546B60F625693 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				114E0BA72252029E0060AEA7 /* NMSSH.framework */,
 				1169AD9922500A3700DF6D47 /* CloudKit.framework */,
 				86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */,
 			);
@@ -410,7 +414,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AlexCattivo.InfoPanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -432,7 +436,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AlexCattivo.InfoPanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

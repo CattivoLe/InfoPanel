@@ -46,7 +46,7 @@ class StartViewController: UITableViewController {
         let infoPanel = infoPanels[indexPath.row]
         cell.textLabel?.text = infoPanel.object(forKey: "name") as? String
         cell.imageView?.image = UIImage(named: "online")
-        cell.textLabel?.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return cell
     }
     
