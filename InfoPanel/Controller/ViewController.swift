@@ -11,6 +11,7 @@ import NMSSH
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let network = Network()
     var dataToSend = Data()
     var address = "0.0.0.0"
     var panelName = "Panel"
@@ -27,6 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         self.chooseImage()
@@ -52,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func chekConnect() {
         let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = Network.connectToServer(session: session, pass: "pi")
+        let result = network.connectToServer(session: session, pass: "pi")
         if result {
             imageView.image = UIImage(named: "online")
             session.disconnect()
@@ -63,10 +65,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func loadDataPressed(_ sender: UIButton) {
         let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = Network.connectToServer(session: session, pass: "pi")
+        let result = network.connectToServer(session: session, pass: "pi")
         if result {
             session.sftp.connect()
-            Network.sendDataToSeerver(session: session, data: dataToSend, path: pathImg)
+            network.sendDataToSeerver(session: session, data: dataToSend, path: pathImg)
         }
         session.sftp.disconnect()
         session.disconnect()
@@ -74,12 +76,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func cancelImagePressed(_ sender: UIButton) {
         let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = Network.connectToServer(session: session, pass: "pi")
+        let result = network.connectToServer(session: session, pass: "pi")
         if result {
             session.channel.execute("sudo pkill fbi", error: nil)
         }
         session.disconnect()
         imageView.image = UIImage(named: "online")
+    }
+    
+    @IBAction func rebootButtonePressed(_ sender: UIButton) {
+        rebootAllert()
+    }
+    
+    func rebootAllert() {
+        let allertController = UIAlertController(title: "Уверен?", message: "Панель будет перезагружена", preferredStyle: .alert)
+        let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
+            let session = NMSSHSession(host: self.address, andUsername: "pi")
+            let result = self.network.connectToServer(session: session, pass: "pi")
+            if result {
+                session.channel.execute("sudo reboot", error: nil)
+            }
+            session.disconnect()
+            self.imageView.image = UIImage(named: "offline")
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        allertController.addAction(rebootButton)
+        allertController.addAction(cancelButton)
+        self.present(allertController, animated: true)
     }
     
     

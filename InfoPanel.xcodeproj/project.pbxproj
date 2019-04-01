@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		114E0BA82252029E0060AEA7 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114E0BA72252029E0060AEA7 /* NMSSH.framework */; };
 		1169AD9A22500A3700DF6D47 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169AD9922500A3700DF6D47 /* CloudKit.framework */; };
 		1169ADA022500BD700DF6D47 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169AD9F22500BD700DF6D47 /* Network.swift */; };
 		1169ADA222500BFC00DF6D47 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169ADA122500BFB00DF6D47 /* StartViewController.swift */; };
@@ -40,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				114E0BA82252029E0060AEA7 /* NMSSH.framework in Frameworks */,
 				46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */,
 				1169AD9A22500A3700DF6D47 /* CloudKit.framework in Frameworks */,
 			);

@@ -26,6 +26,8 @@ class StartViewController: UITableViewController {
     func getCloudRecords() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "InfoPanel", predicate: predicate)
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        query.sortDescriptors = [sortDescriptor] // Сортировка сущностей
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {return}
             guard let records = records else {return}

@@ -12,7 +12,7 @@ import NMSSH
 class Network {
     
     //MARK: - Connect to server
-    class func connectToServer(session: NMSSHSession, pass: String) -> Bool {
+    func connectToServer(session: NMSSHSession, pass: String) -> Bool {
         var result = false
         session.connect()
         if session.isConnected == true {
@@ -26,7 +26,7 @@ class Network {
         return result
     }
     
-    class func sendDataToSeerver(session: NMSSHSession, data: Data, path: String) {
+    func sendDataToSeerver(session: NMSSHSession, data: Data, path: String) {
         var success = false
         let existFile = session.sftp.fileExists(atPath: path) // Проверить есть ли файл
         if existFile {
@@ -35,6 +35,7 @@ class Network {
             success = session.sftp.appendContents(data, toFileAtPath: path) // Отправить картинку
         }
         if success {
+            print("Открыть картинку")
             session.channel.execute("sudo fbi -T 1 -a --noverbose \(path)", error: nil) // Запустить картинку
         } else {
             print("failure")

@@ -96,27 +96,47 @@
                                     <action selector="cancelImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CPI-KZ-nvd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zE-tV-NIe">
+                                <rect key="frame" x="10" y="461.5" width="394" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.056107677719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Reboot">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="rebootButtonePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eBv-LL-RQF"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Sui-cF-8nM">
+                                <rect key="frame" x="188.5" y="212.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="Sui-cF-8nM" firstAttribute="centerY" secondItem="wM7-Hn-cTy" secondAttribute="centerY" id="0iz-Q4-d8m"/>
                             <constraint firstItem="vLF-47-ONb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="2p1-1U-a2f"/>
                             <constraint firstAttribute="trailing" secondItem="vLF-47-ONb" secondAttribute="trailing" constant="10" id="6pa-Bj-omL"/>
+                            <constraint firstAttribute="trailing" secondItem="9zE-tV-NIe" secondAttribute="trailing" constant="10" id="8nI-71-lCd"/>
                             <constraint firstItem="g3p-dO-OhX" firstAttribute="top" secondItem="TLC-5X-V1a" secondAttribute="bottom" constant="20" id="CxE-Ra-KR6"/>
                             <constraint firstItem="wM7-Hn-cTy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="HOy-Qf-MEY"/>
                             <constraint firstItem="Uwt-cU-ymM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="M1h-QD-HvN"/>
                             <constraint firstAttribute="trailing" secondItem="Uwt-cU-ymM" secondAttribute="trailing" constant="10" id="RV8-UY-34P"/>
                             <constraint firstItem="wM7-Hn-cTy" firstAttribute="top" secondItem="Uwt-cU-ymM" secondAttribute="bottom" constant="20" id="V7b-7M-fgW"/>
+                            <constraint firstItem="9zE-tV-NIe" firstAttribute="top" secondItem="vLF-47-ONb" secondAttribute="bottom" constant="20" id="XaP-el-K17"/>
                             <constraint firstItem="g3p-dO-OhX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="YtL-LZ-nKg"/>
+                            <constraint firstItem="9zE-tV-NIe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="eXz-Uu-sV7"/>
                             <constraint firstItem="Cpc-j8-kYo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="gB0-dy-45g"/>
                             <constraint firstAttribute="trailing" secondItem="wM7-Hn-cTy" secondAttribute="trailing" constant="10" id="hcw-Ex-C7n"/>
                             <constraint firstItem="vLF-47-ONb" firstAttribute="top" secondItem="Cpc-j8-kYo" secondAttribute="bottom" constant="20" id="hq9-ph-SDy"/>
                             <constraint firstAttribute="trailing" secondItem="g3p-dO-OhX" secondAttribute="trailing" constant="10" id="kd8-tv-7vo"/>
                             <constraint firstItem="Cpc-j8-kYo" firstAttribute="top" secondItem="wM7-Hn-cTy" secondAttribute="bottom" constant="20" id="o3f-kQ-RMC"/>
+                            <constraint firstItem="Sui-cF-8nM" firstAttribute="centerX" secondItem="wM7-Hn-cTy" secondAttribute="centerX" id="sNG-l7-yiB"/>
                             <constraint firstAttribute="trailing" secondItem="Cpc-j8-kYo" secondAttribute="trailing" constant="10" id="t96-ni-RYg"/>
                             <constraint firstItem="Uwt-cU-ymM" firstAttribute="top" secondItem="g3p-dO-OhX" secondAttribute="bottom" constant="20" id="ubL-y6-oNV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Sui-cF-8nM" id="jS9-Td-5zK"/>
                         <outlet property="descriptionLabel" destination="Uwt-cU-ymM" id="M8c-qT-6wI"/>
                         <outlet property="imageView" destination="wM7-Hn-cTy" id="PCM-Sw-bco"/>
                         <outlet property="nameLabel" destination="g3p-dO-OhX" id="zaV-5O-jQj"/>
