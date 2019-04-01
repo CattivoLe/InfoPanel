@@ -17,6 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var panelName = "Panel"
     var notes = "Some Panel"
     let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
+    var panelAvailable = false
+    var dataAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
-        self.chooseImage()
+        if panelAvailable {
+            self.chooseImage()
+        }
     }
     
     // MARK: - ImagePicker Controller
@@ -49,51 +53,67 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = UIImage(data: data)
         imageView.contentMode = .scaleAspectFit
         dataToSend = data
+        dataAvailable = true
         dismiss(animated: true)
     }
     
     //MARK: - Пробное подключение
     func chekConnect() {
-        let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = network.connectToServer(session: session, pass: "pi")
-        if result {
-            imageView.image = UIImage(named: "online")
-            session.disconnect()
-        } else {
-            imageView.image = UIImage(named: "offline")
+        let task = DispatchQueue.init(label: "chekConnect")
+        task.async {
+            let session = NMSSHSession(host: self.address, andUsername: "pi")
+            let result = self.network.connectToServer(session: session, pass: "pi")
+            if result {
+                self.panelAvailable = true
+                session.disconnect()
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(named: "online")
+                }
+            } else {
+                self.panelAvailable = false
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(named: "offline")
+                }
+            }
         }
     }
     
     //MARK: - Загрузка картинки на панель
     @IBAction func loadDataPressed(_ sender: UIButton) {
-        activityIndicator.startAnimating()
-        let loadData = DispatchQueue.init(label: "loadData")
-        loadData.async {
-            let session = NMSSHSession(host: self.address, andUsername: "pi")
-            let result = self.network.connectToServer(session: session, pass: "pi")
-            if result {
-                session.sftp.connect()
-                self.network.sendDataToSeerver(session: session, data: self.dataToSend, path: self.pathImg, indicator: self.activityIndicator)
+        if dataAvailable {
+            activityIndicator.startAnimating()
+            let loadData = DispatchQueue.init(label: "loadData")
+            loadData.async {
+                let session = NMSSHSession(host: self.address, andUsername: "pi")
+                let result = self.network.connectToServer(session: session, pass: "pi")
+                if result {
+                    session.sftp.connect()
+                    self.network.sendDataToSeerver(session: session, data: self.dataToSend, path: self.pathImg, indicator: self.activityIndicator)
+                }
+                session.sftp.disconnect()
+                session.disconnect()
             }
-            session.sftp.disconnect()
-            session.disconnect()
         }
     }
     
     //MARK: - Сброс картинки
     @IBAction func cancelImagePressed(_ sender: UIButton) {
-        let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = network.connectToServer(session: session, pass: "pi")
-        if result {
-            session.channel.execute("sudo pkill fbi", error: nil)
+        if panelAvailable {
+            let session = NMSSHSession(host: address, andUsername: "pi")
+            let result = network.connectToServer(session: session, pass: "pi")
+            if result {
+                session.channel.execute("sudo pkill fbi", error: nil)
+            }
+            session.disconnect()
+            imageView.image = UIImage(named: "online")
         }
-        session.disconnect()
-        imageView.image = UIImage(named: "online")
     }
     
     //MARK: - Сброс приставки
     @IBAction func rebootButtonePressed(_ sender: UIButton) {
-        rebootAllert()
+        if panelAvailable {
+            rebootAllert()
+        }
     }
     
     func rebootAllert() {

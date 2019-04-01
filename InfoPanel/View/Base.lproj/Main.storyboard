@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Panels-->
+        <!--DO Panels Control-->
         <scene sceneID="GIc-1E-e5p">
             <objects>
                 <tableViewController id="l10-D0-5JC" customClass="StartViewController" customModule="InfoPanel" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,9 @@
                             <outlet property="delegate" destination="l10-D0-5JC" id="1YY-Cy-cyH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Panels" id="N8H-DT-7ww"/>
+                    <navigationItem key="navigationItem" title="DO Panels Control" id="N8H-DT-7ww">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="fWf-0e-whr"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="Control" id="Tu8-QD-7oe"/>
                     </connections>
