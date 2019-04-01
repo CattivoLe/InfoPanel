@@ -79,7 +79,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpc-j8-kYo">
                                 <rect key="frame" x="10" y="361.5" width="394" height="30"/>
                                 <color key="backgroundColor" red="0.52975430602310958" green="0.16104308422643596" blue="0.54014835018796969" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Load image">
+                                <state key="normal" title="Show image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -89,7 +89,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLF-47-ONb">
                                 <rect key="frame" x="10" y="411.5" width="394" height="30"/>
                                 <color key="backgroundColor" red="0.5304185152053833" green="0.1617259681224823" blue="0.539714515209198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Clear image">
+                                <state key="normal" title="Reset image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zE-tV-NIe">
-                                <rect key="frame" x="10" y="461.5" width="394" height="30"/>
+                                <rect key="frame" x="10" y="481.5" width="394" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.056107677719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Reboot">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,7 +122,7 @@
                             <constraint firstItem="Uwt-cU-ymM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="M1h-QD-HvN"/>
                             <constraint firstAttribute="trailing" secondItem="Uwt-cU-ymM" secondAttribute="trailing" constant="10" id="RV8-UY-34P"/>
                             <constraint firstItem="wM7-Hn-cTy" firstAttribute="top" secondItem="Uwt-cU-ymM" secondAttribute="bottom" constant="20" id="V7b-7M-fgW"/>
-                            <constraint firstItem="9zE-tV-NIe" firstAttribute="top" secondItem="vLF-47-ONb" secondAttribute="bottom" constant="20" id="XaP-el-K17"/>
+                            <constraint firstItem="9zE-tV-NIe" firstAttribute="top" secondItem="vLF-47-ONb" secondAttribute="bottom" constant="40" id="XaP-el-K17"/>
                             <constraint firstItem="g3p-dO-OhX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="YtL-LZ-nKg"/>
                             <constraint firstItem="9zE-tV-NIe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="eXz-Uu-sV7"/>
                             <constraint firstItem="Cpc-j8-kYo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="gB0-dy-45g"/>

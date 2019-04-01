@@ -16,7 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var address = "0.0.0.0"
     var panelName = "Panel"
     var notes = "Some Panel"
-    let pathImg = "/home/pi/Pictures/FromIPhone.jpeg"
+    let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: - ImagePicker Controller
     func chooseImage() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) { // Проверка доступности библиотеки
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
@@ -52,6 +52,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true)
     }
     
+    //MARK: - Пробное подключение
     func chekConnect() {
         let session = NMSSHSession(host: address, andUsername: "pi")
         let result = network.connectToServer(session: session, pass: "pi")
@@ -63,6 +64,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //MARK: - Загрузка картинки на панель
     @IBAction func loadDataPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
         let loadData = DispatchQueue.init(label: "loadData")
@@ -78,6 +80,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //MARK: - Сброс картинки
     @IBAction func cancelImagePressed(_ sender: UIButton) {
         let session = NMSSHSession(host: address, andUsername: "pi")
         let result = network.connectToServer(session: session, pass: "pi")
@@ -88,12 +91,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = UIImage(named: "online")
     }
     
+    //MARK: - Сброс приставки
     @IBAction func rebootButtonePressed(_ sender: UIButton) {
         rebootAllert()
     }
     
     func rebootAllert() {
-        let allertController = UIAlertController(title: "Уверен?", message: "Панель будет перезагружена", preferredStyle: .alert)
+        let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .alert)
         let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
             let session = NMSSHSession(host: self.address, andUsername: "pi")
             let result = self.network.connectToServer(session: session, pass: "pi")

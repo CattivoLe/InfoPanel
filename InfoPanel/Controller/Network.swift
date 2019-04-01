@@ -26,6 +26,7 @@ class Network {
         return result
     }
     
+    //MARK: - Отправка и запуск картинки
     func sendDataToSeerver(session: NMSSHSession, data: Data, path: String, indicator: UIActivityIndicatorView) {
         var success = false
         let existFile = session.sftp.fileExists(atPath: path) // Проверить есть ли файл
