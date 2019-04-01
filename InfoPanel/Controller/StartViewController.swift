@@ -15,6 +15,7 @@ class StartViewController: UITableViewController {
     var panelAddress: String?
     var panelName: String?
     var panelNotes:String?
+    var panelOrient: String?
     let publicDataBase = CKContainer.default().publicCloudDatabase // Публичный контейнер с записями
 
     override func viewDidLoad() {
@@ -57,6 +58,7 @@ class StartViewController: UITableViewController {
         panelAddress = infoPanel.object(forKey: "address") as? String
         panelName = infoPanel.object(forKey: "name") as? String
         panelNotes = infoPanel.object(forKey: "notes") as? String
+        panelOrient = infoPanel.object(forKey: "orient") as? String
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "Control", sender: self)
     }
@@ -68,6 +70,7 @@ class StartViewController: UITableViewController {
             destination.address = panelAddress ?? "0.0.0.0"
             destination.panelName = panelName ?? "Panel"
             destination.notes = panelNotes ?? "Some Panel"
+            destination.orient = panelOrient ?? "h"
         }
     }
 

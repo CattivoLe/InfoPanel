@@ -16,12 +16,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var address = "0.0.0.0"
     var panelName = "Panel"
     var notes = "Some Panel"
+    var orient = "h"
     let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
     var panelAvailable = false
     var dataAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if orient == "v" {
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
+        }
         nameLabel.text = panelName
         descriptionLabel.text = notes
         chekConnect()
