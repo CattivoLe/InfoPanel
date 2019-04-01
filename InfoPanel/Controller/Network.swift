@@ -26,7 +26,7 @@ class Network {
         return result
     }
     
-    func sendDataToSeerver(session: NMSSHSession, data: Data, path: String) {
+    func sendDataToSeerver(session: NMSSHSession, data: Data, path: String, indicator: UIActivityIndicatorView) {
         var success = false
         let existFile = session.sftp.fileExists(atPath: path) // Проверить есть ли файл
         if existFile {
@@ -35,10 +35,16 @@ class Network {
             success = session.sftp.appendContents(data, toFileAtPath: path) // Отправить картинку
         }
         if success {
-            print("Открыть картинку")
+            session.channel.execute("sudo pkill fbi", error: nil)
             session.channel.execute("sudo fbi -T 1 -a --noverbose \(path)", error: nil) // Запустить картинку
+            DispatchQueue.main.async {
+                indicator.stopAnimating()
+            }
         } else {
             print("failure")
+            DispatchQueue.main.async {
+                indicator.stopAnimating()
+            }
         }
     }
     

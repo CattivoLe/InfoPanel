@@ -64,14 +64,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func loadDataPressed(_ sender: UIButton) {
-        let session = NMSSHSession(host: address, andUsername: "pi")
-        let result = network.connectToServer(session: session, pass: "pi")
-        if result {
-            session.sftp.connect()
-            network.sendDataToSeerver(session: session, data: dataToSend, path: pathImg)
+        activityIndicator.startAnimating()
+        let loadData = DispatchQueue.init(label: "loadData")
+        loadData.async {
+            let session = NMSSHSession(host: self.address, andUsername: "pi")
+            let result = self.network.connectToServer(session: session, pass: "pi")
+            if result {
+                session.sftp.connect()
+                self.network.sendDataToSeerver(session: session, data: self.dataToSend, path: self.pathImg, indicator: self.activityIndicator)
+            }
+            session.sftp.disconnect()
+            session.disconnect()
         }
-        session.sftp.disconnect()
-        session.disconnect()
     }
     
     @IBAction func cancelImagePressed(_ sender: UIButton) {
