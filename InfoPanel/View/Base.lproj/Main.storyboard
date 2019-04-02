@@ -142,9 +142,9 @@
                         <outlet property="descriptionLabel" destination="Uwt-cU-ymM" id="M8c-qT-6wI"/>
                         <outlet property="imageView" destination="wM7-Hn-cTy" id="PCM-Sw-bco"/>
                         <outlet property="nameLabel" destination="g3p-dO-OhX" id="zaV-5O-jQj"/>
-                        <outletCollection property="showButtonLabel" destination="Cpc-j8-kYo" collectionClass="NSMutableArray" id="7gQ-Fy-Hp6"/>
-                        <outletCollection property="showButtonLabel" destination="vLF-47-ONb" collectionClass="NSMutableArray" id="kgo-G5-2gY"/>
-                        <outletCollection property="showButtonLabel" destination="9zE-tV-NIe" collectionClass="NSMutableArray" id="bwQ-yE-C6T"/>
+                        <outletCollection property="buttonLabels" destination="Cpc-j8-kYo" collectionClass="NSMutableArray" id="GHS-eM-WHh"/>
+                        <outletCollection property="buttonLabels" destination="vLF-47-ONb" collectionClass="NSMutableArray" id="B4r-WN-jm2"/>
+                        <outletCollection property="buttonLabels" destination="9zE-tV-NIe" collectionClass="NSMutableArray" id="mE6-gl-q1u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

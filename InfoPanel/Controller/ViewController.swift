@@ -33,7 +33,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var showButtonLabel: [UIButton]!
+    @IBOutlet var buttonLabels: [UIButton]!
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         if panelAvailable {
@@ -81,15 +81,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         self.imageView.image = UIImage(named: "online")
                     }
                     self.activityIndicator.stopAnimating()
-                    for button in self.showButtonLabel {
-                        button.backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
-                    }
+                    self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
+                    self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
+                    self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
                 }
             } else {
+                self.panelAvailable = false
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                 }
-                self.panelAvailable = false
             }
         }
     }

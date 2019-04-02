@@ -11,15 +11,16 @@ import NMSSH
 
 class Network {
     
+    let sendKill = "sudo pkill fbi"
+    let sendOpen = "sudo fbi -T 1 -a --noverbose "
+    
     //MARK: - Connect to server
     func connectToServer(session: NMSSHSession, pass: String) -> Bool {
         var result = false
         session.connect()
         if session.isConnected == true {
-            print("connected")
             session.authenticate(byPassword: pass)
             if session.isAuthorized == true {
-                print("authorized")
                 result = true
             }
         }
@@ -33,16 +34,15 @@ class Network {
         if existFile {
             success = session.sftp.writeContents(data, toFileAtPath: path) // Перезаписать картинку
         } else {
-            success = session.sftp.appendContents(data, toFileAtPath: path) // Отправить картинку
+            success = session.sftp.appendContents(data, toFileAtPath: path) // Создать картинку
         }
         if success {
-            session.channel.execute("sudo pkill fbi", error: nil)
-            session.channel.execute("sudo fbi -T 1 -a --noverbose \(path)", error: nil) // Запустить картинку
+            session.channel.execute(sendKill, error: nil)
+            session.channel.execute("\(sendOpen)\(path)", error: nil) // Запустить картинку
             DispatchQueue.main.async {
                 indicator.stopAnimating()
             }
         } else {
-            print("failure")
             DispatchQueue.main.async {
                 indicator.stopAnimating()
             }
