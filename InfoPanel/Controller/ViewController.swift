@@ -8,26 +8,24 @@
 
 import UIKit
 import NMSSH
+import CloudKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let network = Network()
     var dataToSend = Data()
-    var address = "0.0.0.0"
-    var panelName = "Panel"
-    var notes = "Some Panel"
-    var orient = "h"
+    var panel: CKRecord?
     let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
     var panelAvailable = false
     var dataAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if orient == "v" {
+        if panel?.object(forKey: "orient") as? String == "v" {
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
         }
-        nameLabel.text = panelName
-        descriptionLabel.text = notes
+        nameLabel.text = panel?.object(forKey: "name") as? String
+        descriptionLabel.text = panel?.object(forKey: "notes") as? String
         chekConnect()
     }
     
@@ -35,6 +33,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var showButtonLabel: [UIButton]!
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         if panelAvailable {
@@ -53,7 +52,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {return}
-        guard let data = image.pngData() else {return} // Подготовить картинку
+        guard let data = image.pngData() else {return}
         imageView.image = UIImage(data: data)
         imageView.contentMode = .scaleAspectFit
         dataToSend = data
@@ -65,19 +64,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func chekConnect() {
         let task = DispatchQueue.init(label: "chekConnect")
         task.async {
-            let session = NMSSHSession(host: self.address, andUsername: "pi")
+            let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
             let result = self.network.connectToServer(session: session, pass: "pi")
             if result {
                 self.panelAvailable = true
                 session.disconnect()
                 DispatchQueue.main.async {
                     self.imageView.image = UIImage(named: "online")
+                    for button in self.showButtonLabel {
+                        button.backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
+                    }
                 }
             } else {
                 self.panelAvailable = false
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(named: "offline")
-                }
             }
         }
     }
@@ -88,7 +87,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             activityIndicator.startAnimating()
             let loadData = DispatchQueue.init(label: "loadData")
             loadData.async {
-                let session = NMSSHSession(host: self.address, andUsername: "pi")
+                let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
                 let result = self.network.connectToServer(session: session, pass: "pi")
                 if result {
                     session.sftp.connect()
@@ -103,7 +102,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK: - Сброс картинки
     @IBAction func cancelImagePressed(_ sender: UIButton) {
         if panelAvailable {
-            let session = NMSSHSession(host: address, andUsername: "pi")
+            let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
             let result = network.connectToServer(session: session, pass: "pi")
             if result {
                 session.channel.execute("sudo pkill fbi", error: nil)
@@ -113,7 +112,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    //MARK: - Сброс приставки
+    //MARK: - Перезагрузка приставки
     @IBAction func rebootButtonePressed(_ sender: UIButton) {
         if panelAvailable {
             rebootAllert()
@@ -123,7 +122,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func rebootAllert() {
         let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .alert)
         let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
-            let session = NMSSHSession(host: self.address, andUsername: "pi")
+            let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
             let result = self.network.connectToServer(session: session, pass: "pi")
             if result {
                 session.channel.execute("sudo reboot", error: nil)

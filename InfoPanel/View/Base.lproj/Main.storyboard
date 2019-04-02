@@ -80,7 +80,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpc-j8-kYo">
                                 <rect key="frame" x="10" y="534" width="394" height="30"/>
-                                <color key="backgroundColor" red="0.52975430602310958" green="0.16104308422643596" blue="0.54014835018796969" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Show image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -90,7 +90,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLF-47-ONb">
                                 <rect key="frame" x="10" y="584" width="394" height="30"/>
-                                <color key="backgroundColor" red="0.5304185152053833" green="0.1617259681224823" blue="0.539714515209198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Reset image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -100,7 +100,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zE-tV-NIe">
                                 <rect key="frame" x="10" y="654" width="394" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.056107677719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Reboot">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -142,6 +142,9 @@
                         <outlet property="descriptionLabel" destination="Uwt-cU-ymM" id="M8c-qT-6wI"/>
                         <outlet property="imageView" destination="wM7-Hn-cTy" id="PCM-Sw-bco"/>
                         <outlet property="nameLabel" destination="g3p-dO-OhX" id="zaV-5O-jQj"/>
+                        <outletCollection property="showButtonLabel" destination="Cpc-j8-kYo" collectionClass="NSMutableArray" id="7gQ-Fy-Hp6"/>
+                        <outletCollection property="showButtonLabel" destination="vLF-47-ONb" collectionClass="NSMutableArray" id="kgo-G5-2gY"/>
+                        <outletCollection property="showButtonLabel" destination="9zE-tV-NIe" collectionClass="NSMutableArray" id="bwQ-yE-C6T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

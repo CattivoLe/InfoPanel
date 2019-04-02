@@ -12,10 +12,7 @@ import CloudKit
 class StartViewController: UITableViewController {
     
     var infoPanels: [CKRecord] = []
-    var panelAddress: String?
-    var panelName: String?
-    var panelNotes:String?
-    var panelOrient: String?
+    var currentPanel: CKRecord?
     let publicDataBase = CKContainer.default().publicCloudDatabase // Публичный контейнер с записями
 
     override func viewDidLoad() {
@@ -54,11 +51,7 @@ class StartViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let infoPanel = infoPanels[indexPath.row]
-        panelAddress = infoPanel.object(forKey: "address") as? String
-        panelName = infoPanel.object(forKey: "name") as? String
-        panelNotes = infoPanel.object(forKey: "notes") as? String
-        panelOrient = infoPanel.object(forKey: "orient") as? String
+        currentPanel = infoPanels[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "Control", sender: self)
     }
@@ -67,10 +60,7 @@ class StartViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Control" {
             guard let destination = segue.destination as? ViewController else {return}
-            destination.address = panelAddress ?? "0.0.0.0"
-            destination.panelName = panelName ?? "Panel"
-            destination.notes = panelNotes ?? "Some Panel"
-            destination.orient = panelOrient ?? "h"
+            destination.panel = currentPanel
         }
     }
 
