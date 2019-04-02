@@ -24,7 +24,7 @@ class StartViewController: UITableViewController {
     func getCloudRecords() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "InfoPanel", predicate: predicate)
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "group", ascending: false)
         query.sortDescriptors = [sortDescriptor]
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {return}
@@ -45,7 +45,7 @@ class StartViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let infoPanel = infoPanels[indexPath.row]
         cell.textLabel?.text = infoPanel.object(forKey: "name") as? String
-        cell.imageView?.image = UIImage(named: "online")
+        cell.imageView?.image = UIImage(named: (infoPanel.object(forKey: "group") as? String)!)
         cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return cell
     }
