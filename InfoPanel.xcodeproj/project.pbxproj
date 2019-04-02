@@ -76,13 +76,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		1169AD9E22500B6F00DF6D47 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		11D7EF322250088D00444321 = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +97,6 @@
 		11D7EF3D2250088D00444321 /* InfoPanel */ = {
 			isa = PBXGroup;
 			children = (
-				1169AD9E22500B6F00DF6D47 /* Model */,
 				1169AD9C22500A8C00DF6D47 /* View */,
 				1169AD9D22500B4C00DF6D47 /* Controller */,
 				1169AD9B22500A6900DF6D47 /* SupportFiles */,

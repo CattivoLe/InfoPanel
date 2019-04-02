@@ -67,10 +67,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
             let result = self.network.connectToServer(session: session, pass: "pi")
             if result {
+                session.sftp.connect()
+                session.channel.execute("raspi2png --width 640 --height 360 --compression 1", error: nil)
+                let data = session.sftp.contents(atPath: "/home/pi/snapshot.png")
+                
                 self.panelAvailable = true
                 session.disconnect()
                 DispatchQueue.main.async {
-                    self.imageView.image = UIImage(named: "online")
+                    if let image = data {
+                        self.imageView.image = UIImage(data: image)
+                    } else {
+                        self.imageView.image = UIImage(named: "online")
+                    }
                     for button in self.showButtonLabel {
                         button.backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
                     }
