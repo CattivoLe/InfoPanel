@@ -62,6 +62,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: - Пробное подключение
     func chekConnect() {
+        activityIndicator.startAnimating()
         let task = DispatchQueue.init(label: "chekConnect")
         task.async {
             let session = NMSSHSession(host: self.panel?.object(forKey: "address") as? String ?? "0.0.0.0", andUsername: "pi")
@@ -79,11 +80,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     } else {
                         self.imageView.image = UIImage(named: "online")
                     }
+                    self.activityIndicator.stopAnimating()
                     for button in self.showButtonLabel {
                         button.backgroundColor = #colorLiteral(red: 0.51474154, green: 0.1420693099, blue: 0.5038574338, alpha: 1)
                     }
                 }
             } else {
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
                 self.panelAvailable = false
             }
         }
