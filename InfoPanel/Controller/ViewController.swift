@@ -57,6 +57,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var buttonLabels: [UIButton]!
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
+        TaptickFeedback.feedback(style: .medium)
+        imageView.alpha = 0.5
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.imageView.alpha = 1
+        }, completion: nil)
         if panelAvailable {
             self.chooseImage()
         }
