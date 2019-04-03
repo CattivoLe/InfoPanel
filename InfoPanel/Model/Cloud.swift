@@ -20,6 +20,7 @@ class Cloud {
         let groupDescriptor = NSSortDescriptor(key: "group", ascending: false)
         let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
         query.sortDescriptors = [groupDescriptor,nameDescriptor]
+        
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {return}
             guard let records = records else {return}
