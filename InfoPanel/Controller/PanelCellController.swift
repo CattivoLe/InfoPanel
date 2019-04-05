@@ -15,6 +15,8 @@ class PanelCellController: UITableViewCell {
     @IBOutlet weak var nameLabelCell: UILabel!
 
     func setValue(currentPanel: CKRecord) {
+        imageViewCell.clipsToBounds = true
+        imageViewCell.layer.cornerRadius = 5
         imageViewCell.image = UIImage(named: (currentPanel.object(forKey: "group") as? String)!)
         nameLabelCell.text = currentPanel.object(forKey: "name") as? String
     }

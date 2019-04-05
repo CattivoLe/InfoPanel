@@ -51,28 +51,33 @@ class StartViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60))
-        let label = UILabel(frame: CGRect(x: 120, y: 30, width: UIScreen.main.bounds.width, height: 20))
-        let image = UIImageView(frame: CGRect(x: 10, y: 10, width: 100, height: 60))
-        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        let label = UILabel(frame: CGRect(x: 200, y: 45, width: UIScreen.main.bounds.width, height: 60))
+        let image = UIImageView(frame: CGRect(x: 20, y: 30, width: 160, height: 90))
+        label.font = label.font.withSize(25)
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 10
         view.addSubview(label)
         view.addSubview(image)
         switch section {
         case 0:
             label.text = "Class panels"
             image.image = UIImage(named: "orange")
+            label.textColor = #colorLiteral(red: 0.9032962322, green: 0.3431209326, blue: 0.02910011634, alpha: 1)
             view.addSubview(buttonSection0)
             buttonSection0.frame = view.frame
             buttonSection0.addTarget(self, action: #selector(self.hederTapped0), for: .touchUpInside)
         case 1:
             label.text = "Lobby panels"
             image.image = UIImage(named: "green")
+            label.textColor = #colorLiteral(red: 0.1933380365, green: 0.7166928649, blue: 0.03345341235, alpha: 1)
             view.addSubview(buttonSection1)
             buttonSection1.frame = view.frame
             buttonSection1.addTarget(self, action: #selector(self.hederTapped1), for: .touchUpInside)
         case 2:
             label.text = "Restaurant panels"
             image.image = UIImage(named: "blue")
+            label.textColor = #colorLiteral(red: 0.04475270212, green: 0.4369654357, blue: 0.7193379998, alpha: 1)
             view.addSubview(buttonSection2)
             buttonSection2.frame = view.frame
             buttonSection2.addTarget(self, action: #selector(self.hederTapped2), for: .touchUpInside)
