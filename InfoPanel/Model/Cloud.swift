@@ -11,9 +11,11 @@ import CloudKit
 
 class Cloud {
     
-    static var infoPanels: [CKRecord] = []
+    static var section0:[CKRecord] = []
+    static var section1: [CKRecord] = []
+    static var section2:[CKRecord] = []
     
-    static func getRecords(viewController: UITableViewController) {
+    static func getRecords() {
         let predicate = NSPredicate(value: true)
         let publicDataBase = CKContainer.default().publicCloudDatabase
         let query = CKQuery(recordType: "InfoPanel", predicate: predicate)
@@ -24,9 +26,15 @@ class Cloud {
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {return}
             guard let records = records else {return}
-            Cloud.infoPanels = records
-            DispatchQueue.main.async {
-                viewController.tableView.reloadData()
+            for record in records {
+                let groupName = record.object(forKey: "group") as? String
+                switch groupName {
+                case "orange": self.section0.append(record)
+                case "green": self.section1.append(record)
+                case "blue": self.section2.append(record)
+                default:
+                    return
+                }
             }
         }
     }

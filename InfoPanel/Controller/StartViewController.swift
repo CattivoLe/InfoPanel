@@ -11,27 +11,97 @@ import CloudKit
 
 class StartViewController: UITableViewController {
     
+    var buttonSection0 = UIButton()
+    var buttonSection1 = UIButton()
+    var buttonSection2 = UIButton()
+    
+    var collapsedSection0 = false
+    var collapsedSection1 = false
+    var collapsedSection2 = false
+    
     var currentPanel: CKRecord?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        Cloud.getRecords(viewController: self)
-    }
     
     // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Cloud.infoPanels.count
+        switch section {
+        case 0:
+            if collapsedSection0 {
+                return Cloud.section0.count
+            } else {
+                return 0
+            }
+        case 1:
+            if collapsedSection1 {
+                return Cloud.section1.count
+            } else {
+                return 0
+            }
+        case 2:
+            if collapsedSection2 {
+                return Cloud.section2.count
+            } else {
+                return 0
+            }
+        default:
+            return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60))
+        let label = UILabel(frame: CGRect(x: 120, y: 30, width: UIScreen.main.bounds.width, height: 20))
+        let image = UIImageView(frame: CGRect(x: 10, y: 10, width: 100, height: 60))
+        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.addSubview(label)
+        view.addSubview(image)
+        switch section {
+        case 0:
+            label.text = "Class panels"
+            image.image = UIImage(named: "orange")
+            view.addSubview(buttonSection0)
+            buttonSection0.frame = view.frame
+            buttonSection0.addTarget(self, action: #selector(self.hederTapped0), for: .touchUpInside)
+        case 1:
+            label.text = "Lobby panels"
+            image.image = UIImage(named: "green")
+            view.addSubview(buttonSection1)
+            buttonSection1.frame = view.frame
+            buttonSection1.addTarget(self, action: #selector(self.hederTapped1), for: .touchUpInside)
+        case 2:
+            label.text = "Restaurant panels"
+            image.image = UIImage(named: "blue")
+            view.addSubview(buttonSection2)
+            buttonSection2.frame = view.frame
+            buttonSection2.addTarget(self, action: #selector(self.hederTapped2), for: .touchUpInside)
+        default:
+            return view
+        }
+        return view
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-        let infoPanel = Cloud.infoPanels[indexPath.row]
-        cell.setValue(currentPanel: infoPanel)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PanelCellController
+        switch indexPath.section {
+        case 0: cell.setValue(currentPanel: Cloud.section0[indexPath.row])
+        case 1: cell.setValue(currentPanel: Cloud.section1[indexPath.row])
+        case 2: cell.setValue(currentPanel: Cloud.section2[indexPath.row])
+        default:
+            return cell
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentPanel = Cloud.infoPanels[indexPath.row]
+        switch indexPath.section {
+        case 0: currentPanel = Cloud.section0[indexPath.row]
+        case 1: currentPanel = Cloud.section1[indexPath.row]
+        case 2: currentPanel = Cloud.section2[indexPath.row]
+        default:
+            return
+        }
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "Control", sender: self)
     }
@@ -42,6 +112,31 @@ class StartViewController: UITableViewController {
             guard let destination = segue.destination as? ViewController else {return}
             destination.panel = currentPanel
         }
+    }
+    
+    @objc func hederTapped0() {
+        if collapsedSection0 {
+            collapsedSection0 = false
+        } else {
+            collapsedSection0 = true
+        }
+        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
+    }
+    @objc func hederTapped1() {
+        if collapsedSection1 {
+            collapsedSection1 = false
+        } else {
+            collapsedSection1 = true
+        }
+        tableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
+    }
+    @objc func hederTapped2() {
+        if collapsedSection2 {
+            collapsedSection2 = false
+        } else {
+            collapsedSection2 = true
+        }
+        tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .fade)
     }
 
     
