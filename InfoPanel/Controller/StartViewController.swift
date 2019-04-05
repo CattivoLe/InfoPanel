@@ -124,24 +124,30 @@ class StartViewController: UITableViewController {
             collapsedSection0 = false
         } else {
             collapsedSection0 = true
+            collapsedSection1 = false
+            collapsedSection2 = false
         }
-        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
+        tableView.reloadSections(IndexSet(0...2), with: .fade)
     }
     @objc func hederTapped1() {
         if collapsedSection1 {
             collapsedSection1 = false
         } else {
+            collapsedSection0 = false
             collapsedSection1 = true
+            collapsedSection2 = false
         }
-        tableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
+        tableView.reloadSections(IndexSet(0...2), with: .fade)
     }
     @objc func hederTapped2() {
         if collapsedSection2 {
             collapsedSection2 = false
         } else {
+            collapsedSection0 = false
+            collapsedSection1 = false
             collapsedSection2 = true
         }
-        tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .fade)
+        tableView.reloadSections(IndexSet(0...2), with: .fade)
     }
 
     
