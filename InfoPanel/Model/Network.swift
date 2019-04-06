@@ -23,11 +23,7 @@ class Network {
         session.connect()
         if session.isConnected == true {
             session.authenticate(byPassword: "pi")
-            if session.isAuthorized == true {
-                return session
-            } else {
-                return nil
-            }
+            return session.isAuthorized == true ? session : nil
         } else {
             return nil
         }

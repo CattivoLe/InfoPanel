@@ -27,24 +27,9 @@ class StartViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            if collapsedSection0 {
-                return Cloud.section0.count
-            } else {
-                return 0
-            }
-        case 1:
-            if collapsedSection1 {
-                return Cloud.section1.count
-            } else {
-                return 0
-            }
-        case 2:
-            if collapsedSection2 {
-                return Cloud.section2.count
-            } else {
-                return 0
-            }
+        case 0: return collapsedSection0 ? Cloud.section0.count : 0
+        case 1: return collapsedSection1 ? Cloud.section1.count : 0
+        case 2: return collapsedSection2 ? Cloud.section2.count : 0
         default:
             return 0
         }
@@ -120,34 +105,22 @@ class StartViewController: UITableViewController {
     }
     
     @objc func hederTapped0() {
-        if collapsedSection0 {
-            collapsedSection0 = false
-        } else {
-            collapsedSection0 = true
-            collapsedSection1 = false
-            collapsedSection2 = false
-        }
-        tableView.reloadSections(IndexSet(0...2), with: .fade)
+        collapsedSection0 = collapsedSection0 ? false : true
+        collapsedSection1 = false
+        collapsedSection2 = false
+        tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
     @objc func hederTapped1() {
-        if collapsedSection1 {
-            collapsedSection1 = false
-        } else {
-            collapsedSection0 = false
-            collapsedSection1 = true
-            collapsedSection2 = false
-        }
-        tableView.reloadSections(IndexSet(0...2), with: .fade)
+        collapsedSection1 = collapsedSection1 ? false : true
+        collapsedSection0 = false
+        collapsedSection2 = false
+        tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
     @objc func hederTapped2() {
-        if collapsedSection2 {
-            collapsedSection2 = false
-        } else {
-            collapsedSection0 = false
-            collapsedSection1 = false
-            collapsedSection2 = true
-        }
-        tableView.reloadSections(IndexSet(0...2), with: .fade)
+        collapsedSection2 = collapsedSection2 ? false : true
+        collapsedSection0 = false
+        collapsedSection1 = false
+        tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
 
     

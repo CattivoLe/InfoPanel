@@ -42,9 +42,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.main.async {
                 self.imageView.image = UIImage(data: data)
                 self.panelAvailable = true
-                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-                self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.5368313789, green: 0.1443706751, blue: 0.5136672854, alpha: 1)
+                self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.4458050728, green: 0.163125366, blue: 0.4777153134, alpha: 1)
+                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.3106422722, green: 0.1723558903, blue: 0.4257687926, alpha: 1)
                 self.activityIndicator.stopAnimating()
             }
         }
@@ -56,12 +56,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var buttonLabels: [UIButton]!
     
-    @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func choseImageDownPressed(_ sender: UIButton) {
         TaptickFeedback.feedback(style: .medium)
         imageView.alpha = 0.5
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-            self.imageView.alpha = 1
-        }, completion: nil)
+    }
+    @IBAction func choseImageUpPressed(_ sender: UIButton) {
+        TaptickFeedback.feedback(style: .light)
+        imageView.alpha = 1
         if panelAvailable {
             self.chooseImage()
         }

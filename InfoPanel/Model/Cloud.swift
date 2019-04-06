@@ -6,7 +6,7 @@
 //  Copyright © 2019 Александр Омельчук. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CloudKit
 
 class Cloud {
