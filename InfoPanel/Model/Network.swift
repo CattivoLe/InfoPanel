@@ -9,6 +9,8 @@
 import Foundation
 import NMSSH
 
+var serverAddress: String?
+
 class Network {
     
     let sendKill = "sudo pkill fbi"

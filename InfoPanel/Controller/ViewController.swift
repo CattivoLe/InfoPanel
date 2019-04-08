@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         nameLabel.text = panel?.object(forKey: "name") as? String
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
+        serverAddress = panel?.object(forKey: "address") as? String
     }
     
     @IBOutlet weak var imageView: UIImageView!
@@ -45,6 +46,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.chooseImage()
         }
     }
+    @IBAction func playVideoButtonPressed(_ sender: UIButton) {
+        showFiles()
+    }
     
     // MARK: - Connect func
     func connectToPanel() {
@@ -61,9 +65,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.main.async {
                 self.imageView.image = UIImage(data: data)
                 self.panelAvailable = true
-                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.5368313789, green: 0.1443706751, blue: 0.5136672854, alpha: 1)
+                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.6100167036, green: 0.1419241726, blue: 0.538854301, alpha: 1)
                 self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.4458050728, green: 0.163125366, blue: 0.4777153134, alpha: 1)
-                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.3106422722, green: 0.1723558903, blue: 0.4257687926, alpha: 1)
+                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.3715315461, green: 0.1610516906, blue: 0.4489899874, alpha: 1)
+                self.buttonLabels[3].backgroundColor = #colorLiteral(red: 0.2642173171, green: 0.1439831555, blue: 0.3898663521, alpha: 1)
                 self.activityIndicator.stopAnimating()
             }
         }
@@ -139,6 +144,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(allertController, animated: true)
     }
     
+    //MARK: - PopOverController
+    func showFiles() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "VideoFiles") else {return}
+        viewController.modalPresentationStyle = .popover
+        let popOverVC = viewController.popoverPresentationController
+        popOverVC?.delegate = self
+        popOverVC?.sourceView = self.buttonLabels[2]
+        popOverVC?.sourceRect = CGRect(x: self.buttonLabels[2].bounds.midX, y: self.buttonLabels[2].bounds.minY, width: 0, height: 0)
+        viewController.preferredContentSize = CGSize(width: 250, height: 200)
+        if serverAddress != nil {
+            self.present(viewController, animated: true)
+        }
+    }
     
+    
+}
+
+extension ViewController: UIPopoverPresentationControllerDelegate { // Реализация POPView для iPhone
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
 }
 
