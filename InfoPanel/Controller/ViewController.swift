@@ -21,6 +21,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         connectToPanel()
+        let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rebootAllert))
+        self.navigationItem.setRightBarButton(rightBut, animated: false)
         if panel?.object(forKey: "orient") as? String == "v" {
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
         }
@@ -47,7 +49,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     @IBAction func playVideoButtonPressed(_ sender: UIButton) {
-        showFiles()
+        if panelAvailable {
+            showFiles()
+        }
     }
     
     // MARK: - Connect func
@@ -65,10 +69,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.main.async {
                 self.imageView.image = UIImage(data: data)
                 self.panelAvailable = true
-                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.6100167036, green: 0.1419241726, blue: 0.538854301, alpha: 1)
-                self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.4458050728, green: 0.163125366, blue: 0.4777153134, alpha: 1)
-                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.3715315461, green: 0.1610516906, blue: 0.4489899874, alpha: 1)
-                self.buttonLabels[3].backgroundColor = #colorLiteral(red: 0.2642173171, green: 0.1439831555, blue: 0.3898663521, alpha: 1)
+                self.buttonLabels[0].backgroundColor = #colorLiteral(red: 0.4025556445, green: 0.04715014249, blue: 0.6319543123, alpha: 1)
+                self.buttonLabels[1].backgroundColor = #colorLiteral(red: 0.3206933737, green: 0.03235480934, blue: 0.4772351384, alpha: 1)
+                self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.2433076203, green: 0.01837205701, blue: 0.3306440711, alpha: 1)
                 self.activityIndicator.stopAnimating()
             }
         }
@@ -119,14 +122,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //MARK: - Перезагрузка приставки
-    @IBAction func rebootButtonePressed(_ sender: UIButton) {
-        if panelAvailable {
-            rebootAllert()
-        }
-    }
-    
-    func rebootAllert() {
-        let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .alert)
+    @objc func rebootAllert() {
+        let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .actionSheet)
         let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
             self.panelAvailable = false
             self.dataAvailable = false
@@ -141,7 +138,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         allertController.addAction(rebootButton)
         allertController.addAction(cancelButton)
-        self.present(allertController, animated: true)
+        if panelAvailable {
+            self.present(allertController, animated: true)
+        }
     }
     
     //MARK: - PopOverController
@@ -150,9 +149,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         viewController.modalPresentationStyle = .popover
         let popOverVC = viewController.popoverPresentationController
         popOverVC?.delegate = self
-        popOverVC?.sourceView = self.buttonLabels[2]
-        popOverVC?.sourceRect = CGRect(x: self.buttonLabels[2].bounds.midX, y: self.buttonLabels[2].bounds.minY, width: 0, height: 0)
-        viewController.preferredContentSize = CGSize(width: 250, height: 200)
+        popOverVC?.sourceView = self.buttonLabels[1]
+        popOverVC?.sourceRect = CGRect(x: self.buttonLabels[1].bounds.midX, y: self.buttonLabels[1].bounds.minY, width: 0, height: 0)
+        viewController.preferredContentSize = CGSize(width: 250, height: 180)
         if serverAddress != nil {
             self.present(viewController, animated: true)
         }
