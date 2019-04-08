@@ -38,8 +38,8 @@ class StartViewController: UITableViewController {
     // MARK: - Header settings
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
-        let label = UILabel(frame: CGRect(x: 200, y: 45, width: UIScreen.main.bounds.width, height: 60))
-        let image = UIImageView(frame: CGRect(x: 20, y: 30, width: 160, height: 90))
+        let label = UILabel(frame: CGRect(x: 180, y: 40, width: UIScreen.main.bounds.width, height: 60))
+        let image = UIImageView(frame: CGRect(x: 20, y: 30, width: 140, height: 79))
         label.font = label.font.withSize(25)
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
