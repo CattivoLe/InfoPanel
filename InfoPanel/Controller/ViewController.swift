@@ -28,6 +28,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
     }
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var buttonLabels: [UIButton]!
+    
+    @IBAction func choseImageDownPressed(_ sender: UIButton) {
+        TaptickFeedback.feedback(style: .medium)
+        imageView.alpha = 0.5
+    }
+    @IBAction func choseImageUpPressed(_ sender: UIButton) {
+        TaptickFeedback.feedback(style: .light)
+        imageView.alpha = 1
+        if panelAvailable {
+            self.chooseImage()
+        }
+    }
+    
+    // MARK: - Connect func
     func connectToPanel() {
         activityIndicator.startAnimating()
         DispatchQueue.global(qos: .utility).async {
@@ -47,24 +66,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.buttonLabels[2].backgroundColor = #colorLiteral(red: 0.3106422722, green: 0.1723558903, blue: 0.4257687926, alpha: 1)
                 self.activityIndicator.stopAnimating()
             }
-        }
-    }
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var buttonLabels: [UIButton]!
-    
-    @IBAction func choseImageDownPressed(_ sender: UIButton) {
-        TaptickFeedback.feedback(style: .medium)
-        imageView.alpha = 0.5
-    }
-    @IBAction func choseImageUpPressed(_ sender: UIButton) {
-        TaptickFeedback.feedback(style: .light)
-        imageView.alpha = 1
-        if panelAvailable {
-            self.chooseImage()
         }
     }
     
@@ -105,6 +106,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.global(qos: .utility).async {
                 guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
                 session.channel.execute("sudo pkill fbi", error: nil)
+                session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
+                session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
+                session.channel.execute("sudo pkill omxplayer", error: nil)
             }
         }
     }

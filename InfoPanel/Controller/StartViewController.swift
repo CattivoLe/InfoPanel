@@ -35,6 +35,7 @@ class StartViewController: UITableViewController {
         }
     }
     
+    // MARK: - Header settings
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
         let label = UILabel(frame: CGRect(x: 200, y: 45, width: UIScreen.main.bounds.width, height: 60))
@@ -46,21 +47,21 @@ class StartViewController: UITableViewController {
         view.addSubview(image)
         switch section {
         case 0:
-            label.text = "Class panels"
+            label.text = "Class"
             image.image = UIImage(named: "orange")
             label.textColor = #colorLiteral(red: 0.9032962322, green: 0.3431209326, blue: 0.02910011634, alpha: 1)
             view.addSubview(buttonSection0)
             buttonSection0.frame = view.frame
             buttonSection0.addTarget(self, action: #selector(self.hederTapped0), for: .touchUpInside)
         case 1:
-            label.text = "Lobby panels"
+            label.text = "Lobby"
             image.image = UIImage(named: "green")
             label.textColor = #colorLiteral(red: 0.1933380365, green: 0.7166928649, blue: 0.03345341235, alpha: 1)
             view.addSubview(buttonSection1)
             buttonSection1.frame = view.frame
             buttonSection1.addTarget(self, action: #selector(self.hederTapped1), for: .touchUpInside)
         case 2:
-            label.text = "Restaurant panels"
+            label.text = "Restaurant"
             image.image = UIImage(named: "blue")
             label.textColor = #colorLiteral(red: 0.04475270212, green: 0.4369654357, blue: 0.7193379998, alpha: 1)
             view.addSubview(buttonSection2)
@@ -72,6 +73,7 @@ class StartViewController: UITableViewController {
         return view
     }
 
+    // MARK: - Cell settings
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PanelCellController
         switch indexPath.section {
@@ -84,6 +86,7 @@ class StartViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Did select row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: currentPanel = Cloud.section0[indexPath.row]
@@ -104,6 +107,7 @@ class StartViewController: UITableViewController {
         }
     }
     
+    // MARK: - Collapsed func
     @objc func hederTapped0() {
         collapsedSection0 = collapsedSection0 ? false : true
         collapsedSection1 = false

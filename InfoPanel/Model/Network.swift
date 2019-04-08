@@ -29,7 +29,7 @@ class Network {
         }
     }
     
-    //MARK: - Отправка и запуск картинки
+    //MARK: - Seng picture to panel
     func sendDataToSeerver(session: NMSSHSession, data: Data, indicator: UIActivityIndicatorView) {
         var success = false
         session.sftp.connect()
@@ -54,7 +54,7 @@ class Network {
         session.disconnect()
     }
     
-    //MARK: - получить скриншот экрана
+    //MARK: - Get snapshot
     func getSnapshot(session: NMSSHSession) -> Data? {
         session.sftp.connect()
         session.channel.execute(getSnapshot, error: nil)
