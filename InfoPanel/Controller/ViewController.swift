@@ -21,6 +21,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         connectToPanel()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
+            self.connectToPanel()
+        }
         let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(connectToPanel))
         self.navigationItem.setRightBarButton(rightBut, animated: false)
         if panel?.object(forKey: "orient") as? String == "v" {
