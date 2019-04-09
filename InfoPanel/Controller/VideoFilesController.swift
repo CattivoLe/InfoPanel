@@ -46,7 +46,7 @@ class VideoFilesController: UITableViewController {
             session.channel.execute("nohup omxplayer --no-osd --loop /home/pi/Videos/\(name) > /dev/null &", error: nil)
             session.disconnect()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             NotificationCenter.default.post(name: .init("StartVideo"), object: nil)
         }
     }

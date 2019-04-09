@@ -21,17 +21,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         connectToPanel()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
-            self.connectToPanel()
-        }
         let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(connectToPanel))
         self.navigationItem.setRightBarButton(rightBut, animated: false)
-        if panel?.object(forKey: "orient") as? String == "v" {
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
-        }
         nameLabel.text = panel?.object(forKey: "name") as? String
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
         currentServerAddress = panel?.object(forKey: "address") as? String
+        if panel?.object(forKey: "orient") as? String == "v" {
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
+        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
+            self.connectToPanel()
+        }
     }
     
     @IBOutlet weak var imageView: UIImageView!
@@ -140,7 +140,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         allertController.addAction(cancelButton)
         allertController.addAction(okButton)
         if panelAvailable {
-            TaptickFeedback.feedback(style: .succes)
             self.present(allertController, animated: true)
         }
     }
