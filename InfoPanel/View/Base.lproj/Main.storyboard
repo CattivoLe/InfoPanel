@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kiB-eY-pub">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kiB-eY-pub">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -157,6 +157,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLF-47-ONb">
                                         <rect key="frame" x="0.0" y="96" width="355" height="38"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Reset screen">
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -166,6 +167,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="cancelImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CPI-KZ-nvd"/>
+                                            <outletCollection property="gestureRecognizers" destination="Kzv-Ic-fEP" appends="YES" id="of3-OY-0HD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -206,6 +208,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="3" id="Kzv-Ic-fEP">
+                    <connections>
+                        <action selector="resetButtonLongPressed:" destination="BYZ-38-t0r" id="SJj-oI-6bc"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1188" y="127.28635682158921"/>
         </scene>

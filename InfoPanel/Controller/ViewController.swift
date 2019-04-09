@@ -21,7 +21,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         connectToPanel()
-        let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rebootAllert))
+        let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(connectToPanel))
         self.navigationItem.setRightBarButton(rightBut, animated: false)
         if panel?.object(forKey: "orient") as? String == "v" {
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
@@ -53,9 +53,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             showFiles()
         }
     }
+    @IBAction func resetButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if panelAvailable {
+            rebootAllert()
+        }
+    }
+    
+    //MARK: - Загрузка картинки на панель
+    @IBAction func loadDataPressed(_ sender: UIButton) {
+        if dataAvailable {
+            activityIndicator.startAnimating()
+            DispatchQueue.global(qos: .utility).async {
+                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+                self.network.sendDataToSeerver(session: session, data: self.dataToSend, indicator: self.activityIndicator)
+            }
+        }
+    }
+    
+    //MARK: - Сброс картинки
+    @IBAction func cancelImagePressed(_ sender: UIButton) {
+        if panelAvailable {
+            self.imageView.image = UIImage(named: "online")
+            DispatchQueue.global(qos: .utility).async {
+                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+                session.channel.execute("sudo pkill fbi", error: nil)
+                session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
+                session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
+                session.channel.execute("sudo pkill omxplayer", error: nil)
+            }
+        }
+    }
     
     // MARK: - Connect func
-    func connectToPanel() {
+    @objc func connectToPanel() {
         activityIndicator.startAnimating()
         DispatchQueue.global(qos: .utility).async {
             guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {
@@ -96,33 +126,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true)
     }
     
-    //MARK: - Загрузка картинки на панель
-    @IBAction func loadDataPressed(_ sender: UIButton) {
-        if dataAvailable {
-            activityIndicator.startAnimating()
-            DispatchQueue.global(qos: .utility).async {
-                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
-                self.network.sendDataToSeerver(session: session, data: self.dataToSend, indicator: self.activityIndicator)
-            }
-        }
-    }
-    
-    //MARK: - Сброс картинки
-    @IBAction func cancelImagePressed(_ sender: UIButton) {
-        if panelAvailable {
-            self.imageView.image = UIImage(named: "online")
-            DispatchQueue.global(qos: .utility).async {
-                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
-                session.channel.execute("sudo pkill fbi", error: nil)
-                session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
-                session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
-                session.channel.execute("sudo pkill omxplayer", error: nil)
-            }
-        }
-    }
-    
     //MARK: - Перезагрузка приставки
-    @objc func rebootAllert() {
+    func rebootAllert() {
         let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .actionSheet)
         let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
             self.panelAvailable = false
