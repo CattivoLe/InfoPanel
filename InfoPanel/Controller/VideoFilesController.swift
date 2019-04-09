@@ -38,6 +38,7 @@ class VideoFilesController: UITableViewController {
         self.dismiss(animated: true)
     }
     
+    // MARK: - Запустить воспроизведение видео
     func playVideo(name: String) {
         DispatchQueue.global().async {
             guard let session = self.network.connectToServer(address: currentServerAddress!) else {return}
@@ -47,6 +48,7 @@ class VideoFilesController: UITableViewController {
         }
     }
     
+    // MARK: - Получить список файлов
     @objc func getFiles() {
         DispatchQueue.global().async {
             guard let session = self.network.connectToServer(address: currentServerAddress!) else {return}

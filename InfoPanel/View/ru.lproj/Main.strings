@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "PanelName"; ObjectID = "80g-cq-fn5"; */
+"80g-cq-fn5.text" = "Имя панели";
+
+/* Class = "UIViewController"; title = "Control"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Управление";
+
+/* Class = "UIButton"; normalTitle = "Set the image"; ObjectID = "Cpc-j8-kYo"; */
+"Cpc-j8-kYo.normalTitle" = "Вывести картинку";
+
+/* Class = "UIButton"; normalTitle = "Play video"; ObjectID = "IhT-e5-vxf"; */
+"IhT-e5-vxf.normalTitle" = "Проиграть видео";
+
+/* Class = "UINavigationItem"; title = "DO Panels Control"; ObjectID = "N8H-DT-7ww"; */
+"N8H-DT-7ww.title" = "Инфопанели DO";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "Uwt-cU-ymM"; */
+"Uwt-cU-ymM.text" = "Описание панели";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "fWf-0e-whr"; */
+"fWf-0e-whr.title" = "Назад";
+
+/* Class = "UILabel"; text = "Name panel"; ObjectID = "g3p-dO-OhX"; */
+"g3p-dO-OhX.text" = "Название панели";
+
+/* Class = "UIButton"; normalTitle = "ChoseImageButtone"; ObjectID = "uCa-BZ-dOR"; */
+"uCa-BZ-dOR.normalTitle" = "ChoseImageButtone";
+
+/* Class = "UIButton"; normalTitle = "Reset screen"; ObjectID = "vLF-47-ONb"; */
+"vLF-47-ONb.normalTitle" = "Очистить экран";

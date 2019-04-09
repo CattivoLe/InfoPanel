@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  InfoPanel
+
+  Created by Alexander Omelchuk on 09.04.2019.
+  Copyright © 2019 Александр Омельчук. All rights reserved.
+*/
+
+"Class" = "Аудитории";
+"Lobby" = "В холле";
+"Restaurant" = "Ресторан";
+
+"Panel will be reloaded" = "Панель будет перезагружена";
+"Current image will be reset" = "Текущее изображение будет сброшено";
+"Reboot" = "Перезагрузить";
+"Reset" = "Сбросить";
+
+"You sure?" = "Вы уверены?";
+"Cancel" = "Отмена";

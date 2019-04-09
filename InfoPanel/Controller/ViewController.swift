@@ -55,20 +55,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func resetButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
-            allert(message: "The panel will be reloaded", okTitle: "Reboot") {
+            allert(message: NSLocalizedString("Panel will be reloaded", comment: ""), okTitle: NSLocalizedString("Reboot", comment: "")) {
                 self.rebootPanel()
             }
         }
     }
     @IBAction func cancelImagePressed(_ sender: UIButton) {
         if panelAvailable {
-            allert(message: "The current image will be reset", okTitle: "Reset") {
+            allert(message: NSLocalizedString("Current image will be reset", comment: ""), okTitle: NSLocalizedString("Reset", comment: "")) {
                 self.cleanScreen()
             }
         }
     }
     
-    //MARK: - Загрузка картинки на панель
+    // MARK: - Загрузка картинки на панель
     @IBAction func loadDataPressed(_ sender: UIButton) {
         if dataAvailable {
             activityIndicator.startAnimating()
@@ -102,7 +102,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    //MARK: - Сброс на рабочий стол
+    // MARK: - Сброс на рабочий стол
     func cleanScreen() {
         self.imageView.image = UIImage(named: "online")
         DispatchQueue.global(qos: .utility).async {
@@ -114,7 +114,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    //MARK: - Перезагрузить панель
+    // MARK: - Перезагрузить панель
     func rebootPanel() {
         guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
         session.channel.execute("sudo reboot", error: nil)
@@ -127,10 +127,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    //MARK: - Аллерт подтверждения действия
+    // MARK: - Аллерт подтверждения действия
     func allert(message: String, okTitle: String, nameFunc: @escaping ()->()) {
-        let allertController = UIAlertController(title: "You sure?", message: message, preferredStyle: .actionSheet)
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        let allertController = UIAlertController(title: NSLocalizedString("You sure?", comment: ""), message: message, preferredStyle: .actionSheet)
+        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         let okButton = UIAlertAction(title: okTitle, style: .destructive) { (action) in
            nameFunc()
         }
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    //MARK: - ImagePicker Controller
+    // MARK: - ImagePicker Controller
     func chooseImage() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
@@ -161,7 +161,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true)
     }
     
-    //MARK: - PopOver Controller
+    // MARK: - PopOver Controller
     func showVideoFiles() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "VideoFiles") else {return}
         viewController.modalPresentationStyle = .popover

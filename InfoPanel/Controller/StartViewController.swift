@@ -47,21 +47,21 @@ class StartViewController: UITableViewController {
         view.addSubview(image)
         switch section {
         case 0:
-            label.text = "Class"
+            label.text = NSLocalizedString("Class", comment: "")
             image.image = UIImage(named: "orange")
             label.textColor = #colorLiteral(red: 0.9032962322, green: 0.3431209326, blue: 0.02910011634, alpha: 1)
             view.addSubview(buttonSection0)
             buttonSection0.frame = view.frame
             buttonSection0.addTarget(self, action: #selector(self.hederTapped0), for: .touchUpInside)
         case 1:
-            label.text = "Lobby"
+            label.text = NSLocalizedString("Lobby", comment: "")
             image.image = UIImage(named: "green")
             label.textColor = #colorLiteral(red: 0.1933380365, green: 0.7166928649, blue: 0.03345341235, alpha: 1)
             view.addSubview(buttonSection1)
             buttonSection1.frame = view.frame
             buttonSection1.addTarget(self, action: #selector(self.hederTapped1), for: .touchUpInside)
         case 2:
-            label.text = "Restaurant"
+            label.text = NSLocalizedString("Restaurant", comment: "")
             image.image = UIImage(named: "blue")
             label.textColor = #colorLiteral(red: 0.04475270212, green: 0.4369654357, blue: 0.7193379998, alpha: 1)
             view.addSubview(buttonSection2)

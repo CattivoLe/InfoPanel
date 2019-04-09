@@ -19,7 +19,7 @@ class Network {
     let snapshot = "/home/pi/snapshot.png"
     let getSnapshot = "raspi2png --width 640 --height 360 --compression 1"
     
-    //MARK: - Connect to server
+    // MARK: - Connect to server
     func connectToServer(address: String) -> NMSSHSession? {
         let session = NMSSHSession(host: address, andUsername: "pi")
         session.connect()
@@ -31,7 +31,7 @@ class Network {
         }
     }
     
-    //MARK: - Seng picture to panel
+    // MARK: - Seng picture to panel
     func sendDataToSeerver(session: NMSSHSession, data: Data, indicator: UIActivityIndicatorView) {
         var success = false
         session.sftp.connect()
@@ -56,7 +56,7 @@ class Network {
         session.disconnect()
     }
     
-    //MARK: - Get snapshot
+    // MARK: - Get snapshot
     func getSnapshot(session: NMSSHSession) -> Data? {
         session.sftp.connect()
         session.channel.execute(getSnapshot, error: nil)
