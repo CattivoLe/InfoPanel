@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         nameLabel.text = panel?.object(forKey: "name") as? String
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
-        serverAddress = panel?.object(forKey: "address") as? String
+        currentServerAddress = panel?.object(forKey: "address") as? String
     }
     
     @IBOutlet weak var imageView: UIImageView!
@@ -50,12 +50,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func playVideoButtonPressed(_ sender: UIButton) {
         if panelAvailable {
-            showFiles()
+            showVideoFiles()
         }
     }
     @IBAction func resetButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
-            rebootAllert()
+            allert(message: "The panel will be reloaded", okTitle: "Reboot") {
+                self.rebootPanel()
+            }
+        }
+    }
+    @IBAction func cancelImagePressed(_ sender: UIButton) {
+        if panelAvailable {
+            allert(message: "The current image will be reset", okTitle: "Reset") {
+                self.cleanScreen()
+            }
         }
     }
     
@@ -66,20 +75,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.global(qos: .utility).async {
                 guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
                 self.network.sendDataToSeerver(session: session, data: self.dataToSend, indicator: self.activityIndicator)
-            }
-        }
-    }
-    
-    //MARK: - Сброс картинки
-    @IBAction func cancelImagePressed(_ sender: UIButton) {
-        if panelAvailable {
-            self.imageView.image = UIImage(named: "online")
-            DispatchQueue.global(qos: .utility).async {
-                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
-                session.channel.execute("sudo pkill fbi", error: nil)
-                session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
-                session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
-                session.channel.execute("sudo pkill omxplayer", error: nil)
             }
         }
     }
@@ -107,7 +102,47 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    // MARK: - ImagePicker Controller
+    //MARK: - Сброс на рабочий стол
+    func cleanScreen() {
+        self.imageView.image = UIImage(named: "online")
+        DispatchQueue.global(qos: .utility).async {
+            guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+            session.channel.execute("sudo pkill fbi", error: nil)
+            session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
+            session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
+            session.channel.execute("sudo pkill omxplayer", error: nil)
+        }
+    }
+    
+    //MARK: - Перезагрузить панель
+    func rebootPanel() {
+        guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+        session.channel.execute("sudo reboot", error: nil)
+        session.disconnect()
+        self.imageView.image = UIImage(named: "offline")
+        self.panelAvailable = false
+        self.dataAvailable = false
+        for button in self.buttonLabels {
+            button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        }
+    }
+    
+    //MARK: - Аллерт подтверждения действия
+    func allert(message: String, okTitle: String, nameFunc: @escaping ()->()) {
+        let allertController = UIAlertController(title: "You sure?", message: message, preferredStyle: .actionSheet)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        let okButton = UIAlertAction(title: okTitle, style: .destructive) { (action) in
+           nameFunc()
+        }
+        allertController.addAction(cancelButton)
+        allertController.addAction(okButton)
+        if panelAvailable {
+            TaptickFeedback.feedback(style: .succes)
+            self.present(allertController, animated: true)
+        }
+    }
+    
+    //MARK: - ImagePicker Controller
     func chooseImage() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
@@ -126,30 +161,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true)
     }
     
-    //MARK: - Перезагрузка приставки
-    func rebootAllert() {
-        let allertController = UIAlertController(title: "You sure?", message: "The panel will be reloaded", preferredStyle: .actionSheet)
-        let rebootButton = UIAlertAction(title: "Reboot", style: .destructive) { (action) in
-            self.panelAvailable = false
-            self.dataAvailable = false
-            guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
-            session.channel.execute("sudo reboot", error: nil)
-            session.disconnect()
-            self.imageView.image = UIImage(named: "offline")
-            for button in self.buttonLabels {
-                button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            }
-        }
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
-        allertController.addAction(rebootButton)
-        allertController.addAction(cancelButton)
-        if panelAvailable {
-            self.present(allertController, animated: true)
-        }
-    }
-    
-    //MARK: - PopOverController
-    func showFiles() {
+    //MARK: - PopOver Controller
+    func showVideoFiles() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "VideoFiles") else {return}
         viewController.modalPresentationStyle = .popover
         let popOverVC = viewController.popoverPresentationController
@@ -157,7 +170,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         popOverVC?.sourceView = self.buttonLabels[1]
         popOverVC?.sourceRect = CGRect(x: self.buttonLabels[1].bounds.midX, y: self.buttonLabels[1].bounds.minY, width: 0, height: 0)
         viewController.preferredContentSize = CGSize(width: 250, height: 180)
-        if serverAddress != nil {
+        if currentServerAddress != nil {
             self.present(viewController, animated: true)
         }
     }
@@ -165,7 +178,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
 }
 
-extension ViewController: UIPopoverPresentationControllerDelegate { // Реализация POPView для iPhone
+extension ViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }

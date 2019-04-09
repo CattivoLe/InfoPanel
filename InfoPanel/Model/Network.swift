@@ -9,7 +9,7 @@
 import Foundation
 import NMSSH
 
-var serverAddress: String?
+var currentServerAddress: String?
 
 class Network {
     

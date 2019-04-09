@@ -40,7 +40,7 @@ class VideoFilesController: UITableViewController {
     
     func playVideo(name: String) {
         DispatchQueue.global().async {
-            guard let session = self.network.connectToServer(address: serverAddress!) else {return}
+            guard let session = self.network.connectToServer(address: currentServerAddress!) else {return}
             session.channel.execute("sudo pkill omxplayer", error: nil)
             session.channel.execute("nohup omxplayer --no-osd --loop /home/pi/Videos/\(name) > /dev/null &", error: nil)
             session.disconnect()
@@ -49,7 +49,7 @@ class VideoFilesController: UITableViewController {
     
     @objc func getFiles() {
         DispatchQueue.global().async {
-            guard let session = self.network.connectToServer(address: serverAddress!) else {return}
+            guard let session = self.network.connectToServer(address: currentServerAddress!) else {return}
             session.sftp.connect()
             guard let array = session.sftp.contentsOfDirectory(atPath: "/home/pi/Videos/") else {return}
             self.videoFilesArray = array
