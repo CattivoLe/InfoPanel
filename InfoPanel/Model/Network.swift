@@ -13,7 +13,8 @@ var currentServerAddress: String?
 
 class Network {
     
-    let sendKill = "sudo pkill fbi"
+    let killFbi = "sudo pkill fbi"
+    let killOmx = "sudo pkill omxplayer"
     let sendOpen = "sudo fbi -T 1 -a --noverbose "
     let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
     let snapshot = "/home/pi/snapshot.png"
@@ -42,7 +43,8 @@ class Network {
             success = session.sftp.appendContents(data, toFileAtPath: pathImg) // Создать картинку
         }
         if success {
-            session.channel.execute(sendKill, error: nil)
+            session.channel.execute(killFbi, error: nil)
+            session.channel.execute(killOmx, error: nil)
             session.channel.execute("\(sendOpen)\(pathImg)", error: nil) // Запустить картинку
             DispatchQueue.main.async {
                 indicator.stopAnimating()
