@@ -17,8 +17,13 @@ class PanelCellController: UITableViewCell {
     func setValue(currentPanel: CKRecord) {
         imageViewCell.clipsToBounds = true
         imageViewCell.layer.cornerRadius = 5
-        imageViewCell.image = UIImage(named: (currentPanel.object(forKey: "group") as? String)!)
         nameLabelCell.text = currentPanel.object(forKey: "name") as? String
+        guard let image = currentPanel.object(forKey: "image") as? CKAsset else {return}
+        let data = try? Data(contentsOf: image.fileURL)
+        if let data = data {
+            self.imageViewCell.image = UIImage(data: data)
+        }
     }
+    
     
 }

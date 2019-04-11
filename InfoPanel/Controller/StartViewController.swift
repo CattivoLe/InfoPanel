@@ -21,6 +21,18 @@ class StartViewController: UITableViewController {
     
     var currentPanel: CKRecord?
     
+    override func viewDidLoad() {
+        super .viewDidLoad()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc func refresh() {
+        Cloud.getRecords()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3

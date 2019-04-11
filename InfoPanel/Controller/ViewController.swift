@@ -34,6 +34,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+        guard let panel = panel else {return}
+        saveImageToCloud(panel)
+    }
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -174,6 +180,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         viewController.preferredContentSize = CGSize(width: 250, height: 180)
         if currentServerAddress != nil {
             self.present(viewController, animated: true)
+        }
+    }
+    
+    // MARK: - Сохрнить картинку в ICloud
+    func saveImageToCloud(_ panel: CKRecord) {
+        guard let image = imageView.image else {return}
+        let imageFilePath = NSTemporaryDirectory() + "Snapshot"
+        let imageFileURL = URL(fileURLWithPath: imageFilePath)
+        do {
+            try image.jpegData(compressionQuality: 0.5)?.write(to: imageFileURL, options: .atomic)
+        } catch {
+            print(error.localizedDescription)
+        }
+        let imageAsset = CKAsset(fileURL: imageFileURL)
+        panel.setValue(imageAsset, forKey: "image")
+        let publicDataBase = CKContainer.default().publicCloudDatabase
+        publicDataBase.save(panel) { (_, error) in
+            guard error == nil else {return}
+            do {
+                try FileManager.default.removeItem(at: imageFileURL)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     

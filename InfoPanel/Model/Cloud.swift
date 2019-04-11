@@ -16,6 +16,9 @@ class Cloud {
     static var section2:[CKRecord] = []
     
     static func getRecords() {
+        section0 = []
+        section1 = []
+        section2 = []
         let predicate = NSPredicate(value: true)
         let publicDataBase = CKContainer.default().publicCloudDatabase
         let query = CKQuery(recordType: "InfoPanel", predicate: predicate)
