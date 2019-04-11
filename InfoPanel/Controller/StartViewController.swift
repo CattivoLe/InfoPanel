@@ -23,14 +23,13 @@ class StartViewController: UITableViewController {
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        Cloud.getRecords(tableView: self.tableView, refresh: refreshControl)
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @objc func refresh() {
-        Cloud.getRecords()
-        tableView.reloadData()
-        refreshControl?.endRefreshing()
+        Cloud.getRecords(tableView: self.tableView, refresh: refreshControl)
     }
     
     // MARK: - Table view data source

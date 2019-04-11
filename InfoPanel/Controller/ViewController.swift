@@ -15,6 +15,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var panel: CKRecord?
     let network = Network()
     var dataToSend = Data()
+    var cornerOrient: CGFloat = 0
     var panelAvailable = false
     var dataAvailable = false
     
@@ -26,9 +27,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         nameLabel.text = panel?.object(forKey: "name") as? String
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
         currentServerAddress = panel?.object(forKey: "address") as? String
-        if panel?.object(forKey: "orient") as? String == "v" {
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
-        }
+        checkOrient(panel: panel, cof: 2)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
             self.connectToPanel()
         }
@@ -83,7 +82,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             activityIndicator.startAnimating()
             DispatchQueue.global(qos: .utility).async {
                 guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
-                self.network.sendDataToSeerver(session: session, data: self.dataToSend, indicator: self.activityIndicator)
+                guard let image = UIImage(data: self.dataToSend)?.imageRotated(on: self.cornerOrient).pngData() else {return }
+                self.network.sendDataToSeerver(session: session, data: image, indicator: self.activityIndicator)
             }
         }
     }
@@ -114,6 +114,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Сброс на рабочий стол
     func cleanScreen() {
         self.imageView.image = UIImage(named: "online")
+        checkOrient(panel: panel, cof: 2)
         DispatchQueue.global(qos: .utility).async {
             guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
             session.channel.execute("sudo pkill fbi", error: nil)
@@ -166,6 +167,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.contentMode = .scaleAspectFit
         dataToSend = data
         dataAvailable = true
+        checkOrient(panel: panel, cof: 0.5)
         dismiss(animated: true)
     }
     
@@ -206,6 +208,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    // MARK: - Повернуть ImageView
+    func checkOrient(panel: CKRecord?, cof: Double) {
+        guard let panel = panel else { return }
+        let orient = panel.object(forKey: "orient") as? String
+        switch orient {
+        case "l":
+            cornerOrient = 90
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / cof))
+        case "r":
+            cornerOrient = 270
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / cof))
+        default:
+            return
+        }
+    }
+    
     
 }
 
@@ -215,3 +233,26 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
+extension UIImage { // Поворачивает изображение
+    func imageRotated(on degrees: CGFloat) -> UIImage {
+        let degrees = round(degrees / 90) * 90
+        let sameOrientationType = Int(degrees) % 180 == 0
+        let radians = CGFloat.pi * degrees / CGFloat(180)
+        let newSize = sameOrientationType ? size : CGSize(width: size.height, height: size.width)
+        UIGraphicsBeginImageContext(newSize)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        guard let ctx = UIGraphicsGetCurrentContext(), let cgImage = cgImage else {
+            return self
+        }
+        ctx.translateBy(x: newSize.width / 2, y: newSize.height / 2)
+        ctx.rotate(by: radians)
+        ctx.scaleBy(x: 1, y: -1)
+        let origin = CGPoint(x: -(size.width / 2), y: -(size.height / 2))
+        let rect = CGRect(origin: origin, size: size)
+        ctx.draw(cgImage, in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        return image ?? self
+    }
+}
