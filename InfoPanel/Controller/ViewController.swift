@@ -120,7 +120,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         DispatchQueue.global(qos: .utility).async {
             guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
             session.channel.execute("sudo pkill fbi", error: nil)
-            session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
+            session.channel.execute("sudo pkill gpicview", error: nil)
             //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
             session.channel.execute("sudo pkill omxplayer", error: nil)
         }
@@ -214,15 +214,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func checkOrient(panel: CKRecord?, cof: Double) {
         guard let panel = panel else { return }
         let orient = panel.object(forKey: "orient") as? String
-        switch orient {
-        case "p":
+        if orient != "h" {
             cornerOrient = 90
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
-        case "v":
-            cornerOrient = 270
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / cof))
-        default:
-            return
+           imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
         }
     }
     
