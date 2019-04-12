@@ -20,16 +20,20 @@ class StartViewController: UITableViewController {
     var collapsedSection2 = false
     
     var currentPanel: CKRecord?
+    let loadingView = UIView()
+    let loadingLabel = UILabel()
+    let spinner = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        setLoadingScreen()
         refreshControl = UIRefreshControl()
-        Cloud.getRecords(tableView: self.tableView, refresh: refreshControl)
+        Cloud.getRecords(finishFunction: finishLoadingScreen)
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @objc func refresh() {
-        Cloud.getRecords(tableView: self.tableView, refresh: refreshControl)
+        Cloud.getRecords(finishFunction: finishLoadingScreen)
         tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
     
@@ -52,11 +56,13 @@ class StartViewController: UITableViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
         let label = UILabel(frame: CGRect(x: 180, y: 40, width: UIScreen.main.bounds.width, height: 60))
         let image = UIImageView(frame: CGRect(x: 20, y: 30, width: 140, height: 79))
+        
         label.font = label.font.withSize(25)
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
         view.addSubview(label)
         view.addSubview(image)
+        
         switch section {
         case 0:
             label.text = NSLocalizedString("Class", comment: "")
@@ -88,6 +94,7 @@ class StartViewController: UITableViewController {
     // MARK: - Cell settings
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PanelCellController
+        
         switch indexPath.section {
         case 0: cell.setValue(currentPanel: Cloud.section0[indexPath.row])
         case 1: cell.setValue(currentPanel: Cloud.section1[indexPath.row])
@@ -137,6 +144,42 @@ class StartViewController: UITableViewController {
         collapsedSection0 = false
         collapsedSection1 = false
         tableView.reloadSections(IndexSet(0...2), with: .automatic)
+    }
+    
+    // MARK: - Load Screen func
+    private func setLoadingScreen() {
+        
+        let width: CGFloat = 120
+        let height: CGFloat = 30
+        let x = (tableView.frame.width / 2) - (width / 2)
+        let y = (tableView.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
+        loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        // Sets loading text
+        loadingLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        loadingLabel.textAlignment = .center
+        loadingLabel.text = NSLocalizedString("Loading...", comment: "")
+        loadingLabel.frame = CGRect(x: 10, y: 0, width: 140, height: 30)
+        
+        // Sets spinner
+        spinner.style = .whiteLarge
+        spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        spinner.startAnimating()
+        
+        // Adds text and spinner to the view
+        loadingView.addSubview(spinner)
+        loadingView.addSubview(loadingLabel)
+        tableView.addSubview(loadingView)
+    }
+    
+    private func finishLoadingScreen() {
+        DispatchQueue.main.async {
+            self.spinner.isHidden = true
+            self.loadingLabel.isHidden = true
+            self.refreshControl?.endRefreshing()
+            self.tableView.reloadData()
+            self.spinner.stopAnimating()
+        }
     }
 
     

@@ -15,8 +15,9 @@ class Cloud {
     static var section1:[CKRecord] = []
     static var section2:[CKRecord] = []
     
-    static func getRecords(tableView: UITableView, refresh: UIRefreshControl?) {
+    static func getRecords(finishFunction: @escaping ()->()) {
         section0 = []; section1 = []; section2 = []
+        
         let predicate = NSPredicate(value: true)
         let publicDataBase = CKContainer.default().publicCloudDatabase
         let query = CKQuery(recordType: "InfoPanel", predicate: predicate)
@@ -27,6 +28,7 @@ class Cloud {
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else { return }
             guard let records = records else { return }
+            
             for record in records {
                 let groupName = record.object(forKey: "group") as? String
                 switch groupName {
@@ -36,10 +38,7 @@ class Cloud {
                 default: return
                 }
             }
-            DispatchQueue.main.async {
-                refresh?.endRefreshing()
-                tableView.reloadData()
-            }
+            finishFunction()
         }
     }
     

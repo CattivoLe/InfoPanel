@@ -24,6 +24,7 @@ class Network {
     func connectToServer(address: String) -> NMSSHSession? {
         let session = NMSSHSession(host: address, andUsername: "pi")
         session.connect()
+        
         if session.isConnected == true {
             session.authenticate(byPassword: "pi")
             return session.isAuthorized == true ? session : nil
@@ -36,12 +37,14 @@ class Network {
     func sendDataToSeerver(session: NMSSHSession, data: Data, indicator: UIActivityIndicatorView) {
         var success = false
         session.sftp.connect()
+        
         let existFile = session.sftp.fileExists(atPath: pathImg) // Проверить есть ли файл
         if existFile {
             success = session.sftp.writeContents(data, toFileAtPath: pathImg) // Перезаписать картинку
         } else {
             success = session.sftp.appendContents(data, toFileAtPath: pathImg) // Создать картинку
         }
+        
         if success {
             session.channel.execute(killFbi, error: nil)
             session.channel.execute(killOmx, error: nil)
@@ -62,9 +65,11 @@ class Network {
     func getSnapshot(session: NMSSHSession) -> Data? {
         session.sftp.connect()
         session.channel.execute(getSnapshot, error: nil)
+        
         let data = session.sftp.contents(atPath: snapshot)
         session.sftp.disconnect()
         session.disconnect()
+        
         return data
     }
     
