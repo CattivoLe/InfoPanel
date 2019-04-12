@@ -12,7 +12,7 @@ import CloudKit
 class Cloud {
     
     static var section0:[CKRecord] = []
-    static var section1: [CKRecord] = []
+    static var section1:[CKRecord] = []
     static var section2:[CKRecord] = []
     
     static func getRecords(tableView: UITableView, refresh: UIRefreshControl?) {
@@ -33,13 +33,12 @@ class Cloud {
                 case "orange": self.section0.append(record)
                 case "green": self.section1.append(record)
                 case "blue": self.section2.append(record)
-                default:
-                    return
+                default: return
                 }
             }
             DispatchQueue.main.async {
-                tableView.reloadData()
                 refresh?.endRefreshing()
+                tableView.reloadData()
             }
         }
     }

@@ -22,12 +22,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         connectToPanel()
+        checkOrient(panel: panel, cof: 2)
         let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(connectToPanel))
         self.navigationItem.setRightBarButton(rightBut, animated: false)
         nameLabel.text = panel?.object(forKey: "name") as? String
         descriptionLabel.text = panel?.object(forKey: "notes") as? String
         currentServerAddress = panel?.object(forKey: "address") as? String
-        checkOrient(panel: panel, cof: 2)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
             self.connectToPanel()
         }
@@ -36,7 +36,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
         guard let panel = panel else {return}
-        saveImageToCloud(panel)
+        if panelAvailable {
+            saveImageToCloud(panel)
+        }
     }
     
     @IBOutlet weak var imageView: UIImageView!
@@ -119,7 +121,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
             session.channel.execute("sudo pkill fbi", error: nil)
             session.channel.execute("sudo pkill gpicview", error: nil) // Закрыть стандартую программу отображения картинок
-            session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
+            //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
             session.channel.execute("sudo pkill omxplayer", error: nil)
         }
     }
@@ -213,10 +215,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let panel = panel else { return }
         let orient = panel.object(forKey: "orient") as? String
         switch orient {
-        case "l":
+        case "p":
             cornerOrient = 90
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / cof))
-        case "r":
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
+        case "v":
             cornerOrient = 270
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / cof))
         default:
