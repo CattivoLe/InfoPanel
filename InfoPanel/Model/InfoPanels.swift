@@ -27,8 +27,14 @@ class InfoPanels {
         query.sortDescriptors = [groupDescriptor,nameDescriptor]
         
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
-            guard error == nil else { return }
-            guard let records = records else { return }
+            guard error == nil else {
+                finishFunction()
+                return
+            }
+            guard let records = records else {
+                finishFunction()
+                return
+            }
             self.sortElement(records: records)
             finishFunction()
         }
