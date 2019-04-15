@@ -12,7 +12,8 @@ import CloudKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var panel: CKRecord?
+    var panel: Panel?
+    var cloudRecord: CKRecord?
     let network = Network()
     var dataToSend = Data()
     var cornerOrient: CGFloat = 0
@@ -25,9 +26,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         checkOrient(panel: panel, cof: 2)
         let rightBut = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(connectToPanel))
         self.navigationItem.setRightBarButton(rightBut, animated: false)
-        nameLabel.text = panel?.object(forKey: "name") as? String
-        descriptionLabel.text = panel?.object(forKey: "notes") as? String
-        currentServerAddress = panel?.object(forKey: "address") as? String
+        
+        nameLabel.text = panel?.name
+        descriptionLabel.text = panel?.notes
+        currentServerAddress = panel?.address
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "StartVideo"), object: nil, queue: nil) { (notification) in
             self.connectToPanel()
         }
@@ -35,9 +37,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
-        guard let panel = panel else {return}
         if panelAvailable {
-            saveImageToCloud(panel)
+            InfoPanels.saveImageToCloud(cloudRecord, image: imageView.image)
         }
     }
     
@@ -83,7 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if dataAvailable {
             activityIndicator.startAnimating()
             DispatchQueue.global(qos: .utility).async {
-                guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+                guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
                 guard let image = UIImage(data: self.dataToSend)?.imageRotated(on: self.cornerOrient).pngData() else {return }
                 self.network.sendDataToSeerver(session: session, data: image, indicator: self.activityIndicator)
             }
@@ -94,7 +95,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func connectToPanel() {
         activityIndicator.startAnimating()
         DispatchQueue.global(qos: .utility).async {
-            guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {
+            guard let session = self.network.connectToServer(address: self.panel?.address) else {
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.panelAvailable = false
@@ -118,7 +119,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.imageView.image = UIImage(named: "online")
         checkOrient(panel: panel, cof: 2)
         DispatchQueue.global(qos: .utility).async {
-            guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+            guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
             session.channel.execute("sudo pkill fbi", error: nil)
             session.channel.execute("sudo pkill gpicview", error: nil)
             //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
@@ -128,7 +129,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: - Перезагрузить панель
     func rebootPanel() {
-        guard let session = self.network.connectToServer(address: self.panel?.object(forKey: "address") as! String) else {return}
+        guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
         session.channel.execute("sudo reboot", error: nil)
         session.disconnect()
         self.imageView.image = UIImage(named: "offline")
@@ -187,34 +188,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    // MARK: - Сохрнить картинку в ICloud
-    func saveImageToCloud(_ panel: CKRecord) {
-        guard let image = imageView.image else {return}
-        let imageFilePath = NSTemporaryDirectory() + "Snapshot"
-        let imageFileURL = URL(fileURLWithPath: imageFilePath)
-        do {
-            try image.jpegData(compressionQuality: 0.5)?.write(to: imageFileURL, options: .atomic)
-        } catch {
-            print(error.localizedDescription)
-        }
-        let imageAsset = CKAsset(fileURL: imageFileURL)
-        panel.setValue(imageAsset, forKey: "image")
-        let publicDataBase = CKContainer.default().publicCloudDatabase
-        publicDataBase.save(panel) { (_, error) in
-            guard error == nil else {return}
-            do {
-                try FileManager.default.removeItem(at: imageFileURL)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     // MARK: - Повернуть ImageView
-    func checkOrient(panel: CKRecord?, cof: Double) {
+    func checkOrient(panel: Panel?, cof: Double) {
         guard let panel = panel else { return }
-        let orient = panel.object(forKey: "orient") as? String
-        if orient != "h" {
+        if panel.orient != .horisontal {
             cornerOrient = 90
            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
         }

@@ -18,18 +18,15 @@ class TaptickFeedback {
     }
     
     class func feedback(style: FeedbackType) {
-        if #available(iOS 10.0, *) {
-            
-            switch style {
-            case .heavy:
-                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-            case .medium:
-                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-            case .light:
-                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            case .succes:
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
-            }
+        switch style {
+        case .heavy:
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        case .medium:
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        case .light:
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        case .succes:
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
     }
     

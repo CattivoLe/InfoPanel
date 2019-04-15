@@ -11,6 +11,11 @@ import CloudKit
 
 class StartViewController: UITableViewController {
     
+    var currentPanel: CKRecord?
+    let loadingView = UIView()
+    let infoPanels = InfoPanels()
+    let spinner = UIActivityIndicatorView()
+    
     var buttonSection0 = UIButton()
     var buttonSection1 = UIButton()
     var buttonSection2 = UIButton()
@@ -19,21 +24,16 @@ class StartViewController: UITableViewController {
     var collapsedSection1 = false
     var collapsedSection2 = false
     
-    var currentPanel: CKRecord?
-    let loadingView = UIView()
-    let loadingLabel = UILabel()
-    let spinner = UIActivityIndicatorView()
-    
     override func viewDidLoad() {
         super .viewDidLoad()
         setLoadingScreen()
         refreshControl = UIRefreshControl()
-        Cloud.getRecords(finishFunction: finishLoadingScreen)
+        infoPanels.getRecords(finishFunction: finishLoadingScreen)
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @objc func refresh() {
-        Cloud.getRecords(finishFunction: finishLoadingScreen)
+        infoPanels.getRecords(finishFunction: finishLoadingScreen)
         tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
     
@@ -43,9 +43,9 @@ class StartViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return collapsedSection0 ? Cloud.section0.count : 0
-        case 1: return collapsedSection1 ? Cloud.section1.count : 0
-        case 2: return collapsedSection2 ? Cloud.section2.count : 0
+        case 0: return collapsedSection0 ? infoPanels.section0.count : 0
+        case 1: return collapsedSection1 ? infoPanels.section1.count : 0
+        case 2: return collapsedSection2 ? infoPanels.section2.count : 0
         default:
             return 0
         }
@@ -96,9 +96,9 @@ class StartViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PanelCellController
         
         switch indexPath.section {
-        case 0: cell.setValue(currentPanel: Cloud.section0[indexPath.row])
-        case 1: cell.setValue(currentPanel: Cloud.section1[indexPath.row])
-        case 2: cell.setValue(currentPanel: Cloud.section2[indexPath.row])
+        case 0: cell.setValue(currentPanel: Panel(cloud: infoPanels.section0[indexPath.row]))
+        case 1: cell.setValue(currentPanel: Panel(cloud: infoPanels.section1[indexPath.row]))
+        case 2: cell.setValue(currentPanel: Panel(cloud: infoPanels.section2[indexPath.row]))
         default:
             return cell
         }
@@ -108,9 +108,9 @@ class StartViewController: UITableViewController {
     // MARK: - Did select row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0: currentPanel = Cloud.section0[indexPath.row]
-        case 1: currentPanel = Cloud.section1[indexPath.row]
-        case 2: currentPanel = Cloud.section2[indexPath.row]
+        case 0: currentPanel = infoPanels.section0[indexPath.row]
+        case 1: currentPanel = infoPanels.section1[indexPath.row]
+        case 2: currentPanel = infoPanels.section2[indexPath.row]
         default:
             return
         }
@@ -122,7 +122,9 @@ class StartViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Control" {
             guard let destination = segue.destination as? ViewController else {return}
-            destination.panel = currentPanel
+            guard let panel = currentPanel else { return }
+            destination.panel = Panel(cloud: panel)
+            destination.cloudRecord = currentPanel
         }
     }
     
@@ -149,36 +151,28 @@ class StartViewController: UITableViewController {
     // MARK: - Load Screen func
     private func setLoadingScreen() {
         
-        let width: CGFloat = 120
-        let height: CGFloat = 30
-        let x = (tableView.frame.width / 2) - (width / 2)
-        let y = (tableView.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
-        loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+        let width = tableView.frame.width
+        let height = tableView.frame.height
+        let size: CGFloat = 30
+        let x = width / 2
+        let y = height / 2 - (navigationController?.navigationBar.frame.height)!
+        loadingView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
-        // Sets loading text
-        loadingLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        loadingLabel.textAlignment = .center
-        loadingLabel.text = NSLocalizedString("Loading...", comment: "")
-        loadingLabel.frame = CGRect(x: 10, y: 0, width: 140, height: 30)
-        
-        // Sets spinner
         spinner.style = .whiteLarge
-        spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        spinner.frame = CGRect(x: x - (size / 2), y: y - size, width: size, height: size)
         spinner.startAnimating()
         
-        // Adds text and spinner to the view
         loadingView.addSubview(spinner)
-        loadingView.addSubview(loadingLabel)
-        tableView.addSubview(loadingView)
+        tableView.insertSubview(loadingView, aboveSubview: tableView)
     }
     
     private func finishLoadingScreen() {
         DispatchQueue.main.async {
-            self.spinner.isHidden = true
-            self.loadingLabel.isHidden = true
+            self.spinner.stopAnimating()
             self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
-            self.spinner.stopAnimating()
+            self.tableView.isUserInteractionEnabled = true
+            self.loadingView.isHidden = true
         }
     }
 

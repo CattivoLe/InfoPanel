@@ -21,7 +21,8 @@ class Network {
     let getSnapshot = "raspi2png --width 640 --height 360 --compression 1"
     
     // MARK: - Connect to server
-    func connectToServer(address: String) -> NMSSHSession? {
+    func connectToServer(address: String?) -> NMSSHSession? {
+        guard let address = address else { return nil }
         let session = NMSSHSession(host: address, andUsername: "pi")
         session.connect()
         
