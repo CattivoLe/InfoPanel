@@ -26,14 +26,14 @@ class StartViewController: UITableViewController {
     
     override func viewDidLoad() {
         super .viewDidLoad()
-        setLoadingScreen()
+        loadingScreen()
         refreshControl = UIRefreshControl()
-        infoPanels.getRecords(finishFunction: finishLoadingScreen)
+        infoPanels.getRecords(finishFunction: finishLoading)
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @objc func refresh() {
-        infoPanels.getRecords(finishFunction: finishLoadingScreen)
+        infoPanels.getRecords(finishFunction: finishLoading)
         tableView.reloadSections(IndexSet(0...2), with: .automatic)
     }
     
@@ -149,30 +149,37 @@ class StartViewController: UITableViewController {
     }
     
     // MARK: - Load Screen func
-    private func setLoadingScreen() {
+    private func loadingScreen() {
         
         let width = tableView.frame.width
         let height = tableView.frame.height
         let size: CGFloat = 30
         let x = width / 2
-        let y = height / 2 - (navigationController?.navigationBar.frame.height)!
+        let y = height / 2
+        
+        let blur = UIBlurEffect(style: .dark)
+        let blureView = UIVisualEffectView(effect: blur)
+        
         loadingView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        blureView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
         spinner.style = .whiteLarge
-        spinner.frame = CGRect(x: x - (size / 2), y: y - size, width: size, height: size)
+        spinner.frame = CGRect(x: x - (size / 2), y: y, width: size, height: size)
         spinner.startAnimating()
         
-        loadingView.addSubview(spinner)
-        tableView.insertSubview(loadingView, aboveSubview: tableView)
+        loadingView.addSubview(blureView)
+        loadingView.insertSubview(spinner, aboveSubview: blureView)
+        self.navigationController?.view.addSubview(loadingView)
     }
     
-    private func finishLoadingScreen() {
+    private func finishLoading() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
-            self.tableView.isUserInteractionEnabled = true
-            self.loadingView.isHidden = true
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.loadingView.alpha = 0
+            }, completion: nil)
         }
     }
 
