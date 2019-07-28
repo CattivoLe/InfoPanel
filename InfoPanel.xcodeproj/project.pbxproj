@@ -21,6 +21,7 @@
 		11D7EF462250088E00444321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF452250088E00444321 /* Assets.xcassets */; };
 		11F00908225767610055D548 /* PanelCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00907225767610055D548 /* PanelCellController.swift */; };
 		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		11F00907225767610055D548 /* PanelCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelCellController.swift; sourceTree = "<group>"; };
 		22DE8B82D3FC576BEF1D4300 /* Pods-InfoPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanel.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel.release.xcconfig"; sourceTree = "<group>"; };
 		86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../../../../../../../../../System/Volumes/Data/Users/cattivo/Library/CloudStorage/iCloud Drive/XCode/InfoPanel/InfoPanel/View/Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				11D7EF422250088D00444321 /* Main.storyboard */,
+				EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -94,8 +97,8 @@
 		11B5F7D32254A5520070A548 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				11B5F7D42254A5620070A548 /* InfoPanels.swift */,
 				11B8CEBE22648FBF00E59F86 /* Panel.swift */,
+				11B5F7D42254A5620070A548 /* InfoPanels.swift */,
 				1169AD9F22500BD700DF6D47 /* Network.swift */,
 				11B5F7D92254D8030070A548 /* TaptickFeedback.swift */,
 			);
@@ -222,6 +225,7 @@
 			files = (
 				11D7EF462250088E00444321 /* Assets.xcassets in Resources */,
 				11428E8B225CA5E300B0628F /* Localizable.strings in Resources */,
+				EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */,
 				11D7EF442250088D00444321 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
