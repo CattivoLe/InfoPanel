@@ -116,23 +116,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: - Сброс на рабочий стол
     func cleanScreen() {
-        self.imageView.image = UIImage(named: "online")
         checkOrient(panel: panel, cof: 2)
         DispatchQueue.global(qos: .utility).async {
             guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
             session.channel.execute("sudo pkill fbi", error: nil)
             session.channel.execute("sudo pkill gpicview", error: nil)
-            //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
             session.channel.execute("sudo pkill omxplayer", error: nil)
+            //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
+            session.channel.execute("nohup omxplayer --no-osd --loop /home/pi/Videos/Welcome.mp4 > /dev/null &", error: nil) // Default Video
         }
+        self.imageView.image = cornerOrient == 90 ? #imageLiteral(resourceName: "OnlineV") : #imageLiteral(resourceName: "OnlineH")
     }
     
     // MARK: - Перезагрузить панель
-    func rebootPanel() {
+    private func rebootPanel() {
         guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
         session.channel.execute("sudo reboot", error: nil)
         session.disconnect()
-        self.imageView.image = UIImage(named: "offline")
+        self.imageView.image = cornerOrient == 90 ? #imageLiteral(resourceName: "OffLineV") : #imageLiteral(resourceName: "OffLineH")
         self.panelAvailable = false
         self.dataAvailable = false
         for button in self.buttonLabels {
@@ -141,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: - Аллерт подтверждения действия
-    func allert(message: String, okTitle: String, nameFunc: @escaping ()->()) {
+    private func allert(message: String, okTitle: String, nameFunc: @escaping ()->()) {
         let allertController = UIAlertController(title: NSLocalizedString("You sure?", comment: ""), message: message, preferredStyle: .actionSheet)
         let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         let okButton = UIAlertAction(title: okTitle, style: .destructive) { (action) in
@@ -155,7 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: - ImagePicker Controller
-    func chooseImage() {
+    private func chooseImage() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -175,7 +176,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: - PopOver Controller
-    func showVideoFiles() {
+    private func showVideoFiles() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "VideoFiles") else {return}
         viewController.modalPresentationStyle = .popover
         let popOverVC = viewController.popoverPresentationController
@@ -189,11 +190,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: - Повернуть ImageView
-    func checkOrient(panel: Panel?, cof: Double) {
+    private func checkOrient(panel: Panel?, cof: Double) {
         guard let panel = panel else { return }
         if panel.orient != .horisontal {
             cornerOrient = 90
-           imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
+            imageView.image = #imageLiteral(resourceName: "OffLineV")
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / (cof / 3)))
         }
     }
     

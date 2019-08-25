@@ -39,7 +39,7 @@ class VideoFilesController: UITableViewController {
     }
     
     // MARK: - Запустить воспроизведение видео
-    func playVideo(name: String) {
+    private func playVideo(name: String) {
         DispatchQueue.global().async {
             guard let session = self.network.connectToServer(address: currentServerAddress!) else {return}
             session.channel.execute("sudo pkill omxplayer", error: nil)

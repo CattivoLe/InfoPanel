@@ -13,12 +13,12 @@ var currentServerAddress: String?
 
 class Network {
     
-    let killFbi = "sudo pkill fbi"
-    let killOmx = "sudo pkill omxplayer"
-    let sendOpen = "sudo fbi -T 1 -a --noverbose "
-    let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
-    let snapshot = "/home/pi/snapshot.png"
-    let getSnapshot = "raspi2png --width 640 --height 360 --compression 1"
+    private let killFbi = "sudo pkill fbi"
+    private let killOmx = "sudo pkill omxplayer"
+    private let sendOpen = "sudo fbi -T 1 -a --noverbose "
+    private let pathImg = "/home/pi/Pictures/FromIPhone.jpg"
+    private let snapshot = "/home/pi/snapshot.png"
+    private let getSnapshot = "raspi2png --width 640 --height 360 --compression 1"
     
     // MARK: - Connect to server
     func connectToServer(address: String?) -> NMSSHSession? {

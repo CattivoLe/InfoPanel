@@ -85,7 +85,6 @@
 		1169AD9D22500B4C00DF6D47 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				11D7EF3E2250088D00444321 /* AppDelegate.swift */,
 				1169ADA122500BFB00DF6D47 /* StartViewController.swift */,
 				1169ADA322500C2600DF6D47 /* ViewController.swift */,
 				113F6369225B84E100C711AC /* VideoFilesController.swift */,
@@ -126,6 +125,7 @@
 		11D7EF3D2250088D00444321 /* InfoPanel */ = {
 			isa = PBXGroup;
 			children = (
+				11D7EF3E2250088D00444321 /* AppDelegate.swift */,
 				11B5F7D32254A5520070A548 /* Model */,
 				1169AD9C22500A8C00DF6D47 /* View */,
 				1169AD9D22500B4C00DF6D47 /* Controller */,
@@ -442,7 +442,6 @@
 			baseConfigurationReference = 0D2AF64DC124690F9A93B6E0 /* Pods-InfoPanel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = InfoPanel/SupportFiles/InfoPanel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR7A3F4BM7;
@@ -464,7 +463,6 @@
 			baseConfigurationReference = 22DE8B82D3FC576BEF1D4300 /* Pods-InfoPanel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = InfoPanel/SupportFiles/InfoPanel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR7A3F4BM7;
