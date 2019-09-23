@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16839FC63A722446D9E16C281F975280 /* Pods-InfoPanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 095A263417C3A4176B870B7C58DED849 /* Pods-InfoPanel-dummy.m */; };
+		09816876B8E41B424280838FC741A1FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222DAEF0D819F359AFCFF3D4F927E8A7 /* Foundation.framework */; };
+		16839FC63A722446D9E16C281F975280 /* Pods-InfoPanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6422DF0D1FFAA1EA59F33EADACB75BF2 /* Pods-InfoPanel-dummy.m */; };
 		19D51E869F51F27F2C27957E6EEBD03B /* NMSSHChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = C489A34F7BD75449CF3047DF23B399EE /* NMSSHChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BB552F495ADF6D6295B990574FD10DC /* NMSFTPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 0596B802106D3C950526FB745DAEE991 /* NMSFTPFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CAA4F73CDD0B86B3DBD6E9247FEE033 /* socket_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 943D3E7DD6C8CF54B21B58CC2BC6FE38 /* socket_helper.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -15,9 +16,11 @@
 		469A87DF1B45F4D2ADA551E3580BBBF3 /* NMSSHHostConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BE566F624D0539C83107DE4BA9ADE79A /* NMSSHHostConfig.m */; };
 		4AFD648816FCA9DD29E5AA921AF1445F /* NMSSHHostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F613D785A4761221D1F31AC08AD9C6 /* NMSSHHostConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		532D589C7C5744B6E160F53D6007B761 /* libssh2_sftp.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C12C2DFF5B7B04045EAECEC3E48B38D /* libssh2_sftp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60CBA292AFCEC3AFEAC1B1CA19D16B2D /* Pods-InfoPanelExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC32FAFEA02775A5D61C1D6543A845B4 /* Pods-InfoPanelExtension-dummy.m */; };
 		60F2B31E1933B0EF0BAD13A5A35988C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222DAEF0D819F359AFCFF3D4F927E8A7 /* Foundation.framework */; };
 		6920CB6604CF3516B7C17C1779812BBF /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = E84D4B894F036C596794D1E835D2567C /* libssh2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C0D9D2FA8122AEFA4506B63D864766F /* NMSSH-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CECF42627C406E61751BE905AB11EFBF /* NMSSH-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		787F9796E3C34B4BC9067F95015595D2 /* Pods-InfoPanelExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 850312E9E0CFC2069B8339B9EAA2872D /* Pods-InfoPanelExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E246F29AF39EBB350B923E4B7D556EF /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = 98AECB6B2FA1391C924E547E03D95611 /* NMSSH.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E9691DF02583ED040FEF726B0708ADC /* libssh2_publickey.h in Headers */ = {isa = PBXBuildFile; fileRef = 38A3C3C3E457EAAF549CFAD6269CCFF0 /* libssh2_publickey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8096969024AD38636BC46F3706311ECC /* NMSSHConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A3523D3F79F9B099C5500788CE4EDB /* NMSSHConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,7 +28,7 @@
 		8401B30FFF6B7667CA5159E78F3D8478 /* socket_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0331E8FCEA04868CC9DC811C975615E5 /* socket_helper.m */; };
 		8B00E157C1F7CFAF9641381EF1DD2FC2 /* NMSSH-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F294C85713D221A34BA61AD4D132A509 /* NMSSH-dummy.m */; };
 		8B52563FF062E367335E85AE2D1A9810 /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F2E27057750E41F2CCE86EAC7994CC9 /* NMSSH.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		97ECC5CB4448DA8B723504CB93054C0B /* Pods-InfoPanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B3685F4A3E98A7E5C2612EA772BA2D2 /* Pods-InfoPanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97ECC5CB4448DA8B723504CB93054C0B /* Pods-InfoPanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B3DE1A6D7175D748401F7A0E8470CED6 /* Pods-InfoPanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B37900F37FCFDC18DA3035BEFE1163A5 /* NMSSHSession.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6A3E3145ED780B39B3350C90116817 /* NMSSHSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B9276FB7D1429298ABEB5D911C0C3B9A /* NMSSHSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E721C6B3FC0D5BDF656B3F13BD95D0 /* NMSSHSession.m */; };
 		BC1D0BB1970421AF15DE1A5D1B23971F /* NMSSHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB3B0496E94515CAE6C2E6EE03BBA95 /* NMSSHLogger.m */; };
@@ -41,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		011B243C14778E9FFC8805DD36B34C83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E36E3194AA9B06BC5873E083ED10B917;
+			remoteInfo = NMSSH;
+		};
 		78E95ABC26D6BF58C37B446A263814DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -51,28 +61,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011287CB02CF82D9F64D1F023AB194F8 /* Pods-InfoPanel-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanel-acknowledgements.plist"; sourceTree = "<group>"; };
 		0331E8FCEA04868CC9DC811C975615E5 /* socket_helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = socket_helper.m; path = NMSSH/Config/socket_helper.m; sourceTree = "<group>"; };
 		0596B802106D3C950526FB745DAEE991 /* NMSFTPFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTPFile.h; path = NMSSH/NMSFTPFile.h; sourceTree = "<group>"; };
-		095A263417C3A4176B870B7C58DED849 /* Pods-InfoPanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-InfoPanel-dummy.m"; sourceTree = "<group>"; };
+		0F056A208D8D31E44255CAEB7485C0FC /* Pods-InfoPanelExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanelExtension-acknowledgements.plist"; sourceTree = "<group>"; };
 		191F943C94444F7A88EBFDF3D52853D3 /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = "NMSSH-iOS/Libraries/lib/libcrypto.a"; sourceTree = "<group>"; };
+		1EB353DE18C46049595C3121BE7A4FA5 /* Pods-InfoPanelExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-InfoPanelExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2216BA4BB68D9C161392D2099BC0569F /* NMSFTP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTP.m; path = NMSSH/NMSFTP.m; sourceTree = "<group>"; };
 		222DAEF0D819F359AFCFF3D4F927E8A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		26101DD19C35F9CA268850A243FF15AB /* Pods-InfoPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanel.debug.xcconfig"; sourceTree = "<group>"; };
 		2A0F3C68B74AF73F2A1C73F79D490B3C /* NMSSHConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHConfig.m; path = NMSSH/NMSSHConfig.m; sourceTree = "<group>"; };
-		2B3685F4A3E98A7E5C2612EA772BA2D2 /* Pods-InfoPanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-InfoPanel-umbrella.h"; sourceTree = "<group>"; };
-		3651D9A03A0B99352D4A13531874F0AF /* Pods-InfoPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanel.debug.xcconfig"; sourceTree = "<group>"; };
+		2DE1FC05AA1C4DBFB2F1C27041E91CE0 /* Pods_InfoPanelExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_InfoPanelExtension.framework; path = "Pods-InfoPanelExtension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A3C3C3E457EAAF549CFAD6269CCFF0 /* libssh2_publickey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_publickey.h"; sourceTree = "<group>"; };
+		38CDB7A973A49EEB1F2ED1DF9725B184 /* Pods-InfoPanel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanel-Info.plist"; sourceTree = "<group>"; };
+		3EE3394A4245F94CD12F608D3F1F6BA8 /* Pods-InfoPanelExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanelExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		445F1CAC96D367594FF7A7EFEB723A66 /* NMSSHLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHLogger.h; path = NMSSH/Config/NMSSHLogger.h; sourceTree = "<group>"; };
 		44A3523D3F79F9B099C5500788CE4EDB /* NMSSHConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHConfig.h; path = NMSSH/NMSSHConfig.h; sourceTree = "<group>"; };
-		4F2809B001D196EB70F10AE1C8B3B339 /* Pods-InfoPanel-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-InfoPanel-frameworks.sh"; sourceTree = "<group>"; };
 		50F613D785A4761221D1F31AC08AD9C6 /* NMSSHHostConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHHostConfig.h; path = NMSSH/NMSSHHostConfig.h; sourceTree = "<group>"; };
 		5CB5107A7E01F16396BC0D47882E4E14 /* NMSSH.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.xcconfig; sourceTree = "<group>"; };
 		5EB6124A02EC4063D46C6BDAB6E0C360 /* NMSSH+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NMSSH+Protected.h"; path = "NMSSH/Config/NMSSH+Protected.h"; sourceTree = "<group>"; };
 		5F2E27057750E41F2CCE86EAC7994CC9 /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = "NMSSH-iOS/NMSSH.h"; sourceTree = "<group>"; };
 		61C0E2C6D10F8417739140C29DB4F022 /* NMSFTPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTPFile.m; path = NMSSH/NMSFTPFile.m; sourceTree = "<group>"; };
-		68103DB5368472232C2A9A779920B81F /* Pods-InfoPanel-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-InfoPanel-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6422DF0D1FFAA1EA59F33EADACB75BF2 /* Pods-InfoPanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-InfoPanel-dummy.m"; sourceTree = "<group>"; };
 		6EEC77F51858349E93EF74E23C115C64 /* NMSSH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NMSSH.framework; path = NMSSH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E721C6B3FC0D5BDF656B3F13BD95D0 /* NMSSHSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHSession.m; path = NMSSH/NMSSHSession.m; sourceTree = "<group>"; };
 		7C12C2DFF5B7B04045EAECEC3E48B38D /* libssh2_sftp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_sftp.h"; sourceTree = "<group>"; };
+		7DF5B4AC5E087550EEA3F28F027B0AA7 /* Pods-InfoPanelExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanelExtension.release.xcconfig"; sourceTree = "<group>"; };
+		7E142126A75F2620D2CEFE53ACD85AE9 /* Pods-InfoPanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-InfoPanel.modulemap"; sourceTree = "<group>"; };
+		80374FDEF399082357673A7968779EDA /* Pods-InfoPanel-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-InfoPanel-acknowledgements.markdown"; sourceTree = "<group>"; };
+		850312E9E0CFC2069B8339B9EAA2872D /* Pods-InfoPanelExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-InfoPanelExtension-umbrella.h"; sourceTree = "<group>"; };
 		8530726D5088DD894DA895956B8E3D89 /* NMSSH.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = NMSSH.modulemap; sourceTree = "<group>"; };
 		8B079F294DA5D9A879E6D53A91F51A1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		916B4A65D79C83D4A8D81F5AAC8EBBA0 /* NMSSHSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSessionDelegate.h; path = NMSSH/Protocols/NMSSHSessionDelegate.h; sourceTree = "<group>"; };
@@ -80,27 +97,37 @@
 		943D3E7DD6C8CF54B21B58CC2BC6FE38 /* socket_helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_helper.h; path = NMSSH/Config/socket_helper.h; sourceTree = "<group>"; };
 		96749D3C60B324EC914DACE2922ABD64 /* NMSSHChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHChannel.m; path = NMSSH/NMSSHChannel.m; sourceTree = "<group>"; };
 		98AECB6B2FA1391C924E547E03D95611 /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = NMSSH/NMSSH.h; sourceTree = "<group>"; };
+		9C46A537DCB16001431EFD760CAFCDC0 /* Pods-InfoPanelExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-InfoPanelExtension.modulemap"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AB3620BBED1FC0149BBED1626EC91DFC /* Pods-InfoPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanel.release.xcconfig"; sourceTree = "<group>"; };
 		B2EBD9FC367DE94A0814F3433672C117 /* libssh2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssh2.a; path = "NMSSH-iOS/Libraries/lib/libssh2.a"; sourceTree = "<group>"; };
+		B3DE1A6D7175D748401F7A0E8470CED6 /* Pods-InfoPanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-InfoPanel-umbrella.h"; sourceTree = "<group>"; };
 		B5AC95B0807312F62DDAD4FD40EE1FCD /* NMSFTP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTP.h; path = NMSSH/NMSFTP.h; sourceTree = "<group>"; };
 		BE566F624D0539C83107DE4BA9ADE79A /* NMSSHHostConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHHostConfig.m; path = NMSSH/NMSSHHostConfig.m; sourceTree = "<group>"; };
 		C489A34F7BD75449CF3047DF23B399EE /* NMSSHChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannel.h; path = NMSSH/NMSSHChannel.h; sourceTree = "<group>"; };
+		C87CEB3B8BA5AE1F7158751FD350E264 /* Pods-InfoPanelExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanelExtension-Info.plist"; sourceTree = "<group>"; };
 		C9E862A9633C068337E1C59B4EBBF28F /* Pods_InfoPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_InfoPanel.framework; path = "Pods-InfoPanel.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6A3E3145ED780B39B3350C90116817 /* NMSSHSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSession.h; path = NMSSH/NMSSHSession.h; sourceTree = "<group>"; };
 		CECF42627C406E61751BE905AB11EFBF /* NMSSH-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-umbrella.h"; sourceTree = "<group>"; };
-		D5E6E1DDD46D9A2790A36BB1BE0DE9B7 /* Pods-InfoPanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-InfoPanel.modulemap"; sourceTree = "<group>"; };
+		D01BCC9DFB2AF6E4CA63D5F530B17654 /* Pods-InfoPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-InfoPanel.release.xcconfig"; sourceTree = "<group>"; };
 		D81F2E63EC8A9CD90427073A01737BE3 /* NMSSH-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-prefix.pch"; sourceTree = "<group>"; };
-		E47FFDA6DF149C96FEB37983812592C0 /* Pods-InfoPanel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanel-Info.plist"; sourceTree = "<group>"; };
-		E5C8D0E743CDB5D948674B951390AB66 /* Pods-InfoPanel-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-InfoPanel-acknowledgements.plist"; sourceTree = "<group>"; };
 		E84D4B894F036C596794D1E835D2567C /* libssh2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2.h"; sourceTree = "<group>"; };
 		EEB3B0496E94515CAE6C2E6EE03BBA95 /* NMSSHLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHLogger.m; path = NMSSH/Config/NMSSHLogger.m; sourceTree = "<group>"; };
 		F294C85713D221A34BA61AD4D132A509 /* NMSSH-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NMSSH-dummy.m"; sourceTree = "<group>"; };
+		F2F367BED9048D6E65416AABD8EEB1DC /* Pods-InfoPanel-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-InfoPanel-frameworks.sh"; sourceTree = "<group>"; };
 		F8930AA66CE2D90F5E4E65E3419E1150 /* NMSSHChannelDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannelDelegate.h; path = NMSSH/Protocols/NMSSHChannelDelegate.h; sourceTree = "<group>"; };
 		F9326001A6DFE6D6AEAFDF4977061B54 /* NMSSH-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "NMSSH-Info.plist"; sourceTree = "<group>"; };
+		FC32FAFEA02775A5D61C1D6543A845B4 /* Pods-InfoPanelExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-InfoPanelExtension-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24FE18F5DD8B2DEDE616F706611B58A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09816876B8E41B424280838FC741A1FA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7B9C7CE4D3E906036737FAE8A88AEC46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,29 +148,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1062902308B661CE81E05488A0C178 /* Pods-InfoPanelExtension */ = {
+			isa = PBXGroup;
+			children = (
+				9C46A537DCB16001431EFD760CAFCDC0 /* Pods-InfoPanelExtension.modulemap */,
+				1EB353DE18C46049595C3121BE7A4FA5 /* Pods-InfoPanelExtension-acknowledgements.markdown */,
+				0F056A208D8D31E44255CAEB7485C0FC /* Pods-InfoPanelExtension-acknowledgements.plist */,
+				FC32FAFEA02775A5D61C1D6543A845B4 /* Pods-InfoPanelExtension-dummy.m */,
+				C87CEB3B8BA5AE1F7158751FD350E264 /* Pods-InfoPanelExtension-Info.plist */,
+				850312E9E0CFC2069B8339B9EAA2872D /* Pods-InfoPanelExtension-umbrella.h */,
+				3EE3394A4245F94CD12F608D3F1F6BA8 /* Pods-InfoPanelExtension.debug.xcconfig */,
+				7DF5B4AC5E087550EEA3F28F027B0AA7 /* Pods-InfoPanelExtension.release.xcconfig */,
+			);
+			name = "Pods-InfoPanelExtension";
+			path = "Target Support Files/Pods-InfoPanelExtension";
+			sourceTree = "<group>";
+		};
 		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E34DCC8E2CF86B8D72232914781A840D /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		176920D128B3269EC4399B6C1ED26D1C /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9B4F4E81CB6315F250E377DCB5FD5A92 /* Pods-InfoPanel */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		1F8155FDF982A132B03FD5F1E76BA8AA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6EEC77F51858349E93EF74E23C115C64 /* NMSSH.framework */,
-				C9E862A9633C068337E1C59B4EBBF28F /* Pods_InfoPanel.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8700F0A114ED5A5267C7EDC39883AA0B /* Frameworks */ = {
@@ -156,21 +182,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9B4F4E81CB6315F250E377DCB5FD5A92 /* Pods-InfoPanel */ = {
+		A9840AF17340695FBCEAB8A455C7C314 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D5E6E1DDD46D9A2790A36BB1BE0DE9B7 /* Pods-InfoPanel.modulemap */,
-				68103DB5368472232C2A9A779920B81F /* Pods-InfoPanel-acknowledgements.markdown */,
-				E5C8D0E743CDB5D948674B951390AB66 /* Pods-InfoPanel-acknowledgements.plist */,
-				095A263417C3A4176B870B7C58DED849 /* Pods-InfoPanel-dummy.m */,
-				4F2809B001D196EB70F10AE1C8B3B339 /* Pods-InfoPanel-frameworks.sh */,
-				E47FFDA6DF149C96FEB37983812592C0 /* Pods-InfoPanel-Info.plist */,
-				2B3685F4A3E98A7E5C2612EA772BA2D2 /* Pods-InfoPanel-umbrella.h */,
-				3651D9A03A0B99352D4A13531874F0AF /* Pods-InfoPanel.debug.xcconfig */,
-				AB3620BBED1FC0149BBED1626EC91DFC /* Pods-InfoPanel.release.xcconfig */,
+				6EEC77F51858349E93EF74E23C115C64 /* NMSSH.framework */,
+				C9E862A9633C068337E1C59B4EBBF28F /* Pods_InfoPanel.framework */,
+				2DE1FC05AA1C4DBFB2F1C27041E91CE0 /* Pods_InfoPanelExtension.framework */,
 			);
-			name = "Pods-InfoPanel";
-			path = "Target Support Files/Pods-InfoPanel";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BEA67F2E148251152F323398E8A8218A /* NMSSH */ = {
@@ -221,9 +240,26 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				CD460DBDBBBB87983A90ECBFD0EB6719 /* Pods */,
-				1F8155FDF982A132B03FD5F1E76BA8AA /* Products */,
-				176920D128B3269EC4399B6C1ED26D1C /* Targets Support Files */,
+				A9840AF17340695FBCEAB8A455C7C314 /* Products */,
+				F766416121AD72DAADF751ED6822A2CD /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		D0978FD1EDEE24113CC5EEEE00646A70 /* Pods-InfoPanel */ = {
+			isa = PBXGroup;
+			children = (
+				7E142126A75F2620D2CEFE53ACD85AE9 /* Pods-InfoPanel.modulemap */,
+				80374FDEF399082357673A7968779EDA /* Pods-InfoPanel-acknowledgements.markdown */,
+				011287CB02CF82D9F64D1F023AB194F8 /* Pods-InfoPanel-acknowledgements.plist */,
+				6422DF0D1FFAA1EA59F33EADACB75BF2 /* Pods-InfoPanel-dummy.m */,
+				F2F367BED9048D6E65416AABD8EEB1DC /* Pods-InfoPanel-frameworks.sh */,
+				38CDB7A973A49EEB1F2ED1DF9725B184 /* Pods-InfoPanel-Info.plist */,
+				B3DE1A6D7175D748401F7A0E8470CED6 /* Pods-InfoPanel-umbrella.h */,
+				26101DD19C35F9CA268850A243FF15AB /* Pods-InfoPanel.debug.xcconfig */,
+				D01BCC9DFB2AF6E4CA63D5F530B17654 /* Pods-InfoPanel.release.xcconfig */,
+			);
+			name = "Pods-InfoPanel";
+			path = "Target Support Files/Pods-InfoPanel";
 			sourceTree = "<group>";
 		};
 		E34DCC8E2CF86B8D72232914781A840D /* iOS */ = {
@@ -233,6 +269,15 @@
 				222DAEF0D819F359AFCFF3D4F927E8A7 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		F766416121AD72DAADF751ED6822A2CD /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0978FD1EDEE24113CC5EEEE00646A70 /* Pods-InfoPanel */,
+				0D1062902308B661CE81E05488A0C178 /* Pods-InfoPanelExtension */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		FB7822A36AF7AFA27000BD5F10F146C6 /* Support Files */ = {
@@ -257,6 +302,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				97ECC5CB4448DA8B723504CB93054C0B /* Pods-InfoPanel-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E10D528A1A20926AC5877857FC93169C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				787F9796E3C34B4BC9067F95015595D2 /* Pods-InfoPanelExtension-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +359,25 @@
 			productReference = C9E862A9633C068337E1C59B4EBBF28F /* Pods_InfoPanel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		9EFF1C7239461432869EB3F0CC05165E /* Pods-InfoPanelExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B63F7C2E478D8539AF7EFBBE660836DD /* Build configuration list for PBXNativeTarget "Pods-InfoPanelExtension" */;
+			buildPhases = (
+				E10D528A1A20926AC5877857FC93169C /* Headers */,
+				9237AFD24AFC5F4DD258BCF723E28C3F /* Sources */,
+				24FE18F5DD8B2DEDE616F706611B58A7 /* Frameworks */,
+				6942DB2BF58BDD59F3B06526BCE3EF42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A3A6952124653F3FA2651BD66293A46 /* PBXTargetDependency */,
+			);
+			name = "Pods-InfoPanelExtension";
+			productName = "Pods-InfoPanelExtension";
+			productReference = 2DE1FC05AA1C4DBFB2F1C27041E91CE0 /* Pods_InfoPanelExtension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54BBCD1F5C5BC6E0D4002E2D4AD574B7 /* Build configuration list for PBXNativeTarget "NMSSH" */;
@@ -334,25 +406,33 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 1F8155FDF982A132B03FD5F1E76BA8AA /* Products */;
+			productRefGroup = A9840AF17340695FBCEAB8A455C7C314 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */,
 				35F85EB8FE3B6F72C64F207A7CF58580 /* Pods-InfoPanel */,
+				9EFF1C7239461432869EB3F0CC05165E /* Pods-InfoPanelExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A8814A1DA7BB33B32D64CA8DA49447B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6942DB2BF58BDD59F3B06526BCE3EF42 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,6 +465,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9237AFD24AFC5F4DD258BCF723E28C3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60CBA292AFCEC3AFEAC1B1CA19D16B2D /* Pods-InfoPanelExtension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDD65F900BB9962A915DD3C6C6384B9C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,6 +484,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7A3A6952124653F3FA2651BD66293A46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMSSH;
+			target = E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */;
+			targetProxy = 011B243C14778E9FFC8805DD36B34C83 /* PBXContainerItemProxy */;
+		};
 		92797D9D69EB6BA6BC056C3F707EC36A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NMSSH;
@@ -407,7 +501,7 @@
 /* Begin XCBuildConfiguration section */
 		0230560AEBF2DBCB700F785DEA3E6D50 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3651D9A03A0B99352D4A13531874F0AF /* Pods-InfoPanel.debug.xcconfig */;
+			baseConfigurationReference = 26101DD19C35F9CA268850A243FF15AB /* Pods-InfoPanel.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -442,10 +536,11 @@
 			};
 			name = Debug;
 		};
-		4B49203B160B37C883E73A86F41FAD53 /* Release */ = {
+		035193650F82339BEDCE95D69F248AA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CB5107A7E01F16396BC0D47882E4E14 /* NMSSH.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -472,11 +567,48 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
+		};
+		A5E4EC1DDCB5356BFE92F386584179B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EE3394A4245F94CD12F608D3F1F6BA8 /* Pods-InfoPanelExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		B0087CB4594321EF41619F3181FE120E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -535,6 +667,43 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B2719CE2A27C18288134ACD06E5F8A6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB5107A7E01F16396BC0D47882E4E14 /* NMSSH.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NMSSH/NMSSH-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/NMSSH/NMSSH.modulemap";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -604,7 +773,7 @@
 		};
 		C176748EDB8EF8F8C0F4F6ADAB412209 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB3620BBED1FC0149BBED1626EC91DFC /* Pods-InfoPanel.release.xcconfig */;
+			baseConfigurationReference = D01BCC9DFB2AF6E4CA63D5F530B17654 /* Pods-InfoPanel.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -640,10 +809,12 @@
 			};
 			name = Release;
 		};
-		CD1EE420C3F5F1374343323F384FD209 /* Debug */ = {
+		D274A4B86BCAC59844237CCA531B13FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CB5107A7E01F16396BC0D47882E4E14 /* NMSSH.xcconfig */;
+			baseConfigurationReference = 7DF5B4AC5E087550EEA3F28F027B0AA7 /* Pods-InfoPanelExtension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -653,27 +824,29 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/NMSSH/NMSSH-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/NMSSH/NMSSH.modulemap";
-				PRODUCT_MODULE_NAME = NMSSH;
-				PRODUCT_NAME = NMSSH;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -690,8 +863,8 @@
 		54BBCD1F5C5BC6E0D4002E2D4AD574B7 /* Build configuration list for PBXNativeTarget "NMSSH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD1EE420C3F5F1374343323F384FD209 /* Debug */,
-				4B49203B160B37C883E73A86F41FAD53 /* Release */,
+				035193650F82339BEDCE95D69F248AA7 /* Debug */,
+				B2719CE2A27C18288134ACD06E5F8A6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -701,6 +874,15 @@
 			buildConfigurations = (
 				0230560AEBF2DBCB700F785DEA3E6D50 /* Debug */,
 				C176748EDB8EF8F8C0F4F6ADAB412209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B63F7C2E478D8539AF7EFBBE660836DD /* Build configuration list for PBXNativeTarget "Pods-InfoPanelExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E4EC1DDCB5356BFE92F386584179B3 /* Debug */,
+				D274A4B86BCAC59844237CCA531B13FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

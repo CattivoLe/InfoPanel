@@ -8,11 +8,13 @@
 
 import UIKit
 import CloudKit
+import MobileCoreServices
 
 class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView = UITableView()
     var cloudService = CloudService()
+    let cellIdentifire = "Cell"
     
     //MARK: - View Load
     
@@ -41,7 +43,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let width = view.bounds.width
         let height = view.bounds.height
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: width, height: height), style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
@@ -59,7 +61,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
         cell.backgroundColor = #colorLiteral(red: 0.1077648476, green: 0.1164580062, blue: 0.1289991438, alpha: 1)
         cell.textLabel?.textColor = .white
         cell.textLabel?.text = cloudService.panelsArrey[indexPath.row].object(forKey: "name") as? String
@@ -69,6 +71,30 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(cloudService.panelsArrey[indexPath.row].object(forKey: "address") as? String as Any)
+    }
+    
+    //MARK: - Get Attachment object
+    
+    private func loadAttachmentObject() {
+        guard let extensionContext = self.extensionContext else { return }
+        let item = extensionContext.inputItems.first as? NSExtensionItem
+        let attachment = item?.attachments?.first
+        let contentType = kUTTypeImage as String
+        var imageData: Data?
+        
+        guard (attachment?.hasItemConformingToTypeIdentifier(contentType))! else { return }
+        attachment?.loadItem(forTypeIdentifier: contentType, completionHandler: { (data, error) in
+            guard error == nil else { return }
+            if let url = data as? URL {
+                imageData = try! Data(contentsOf: url)
+            }
+            if let img = data as? UIImage {
+                imageData = img.pngData()
+            }
+            //send image
+            print(imageData as Any)
+            self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+        })
     }
         
     

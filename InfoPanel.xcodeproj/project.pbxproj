@@ -20,12 +20,14 @@
 		11D7EF442250088D00444321 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF422250088D00444321 /* Main.storyboard */; };
 		11D7EF462250088E00444321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF452250088E00444321 /* Assets.xcassets */; };
 		11F00908225767610055D548 /* PanelCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00907225767610055D548 /* PanelCellController.swift */; };
+		17C1AD2B40471F24D0388A2F /* Pods_InfoPanelExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5D86DE3C5F976FA9A5D975 /* Pods_InfoPanelExtension.framework */; };
 		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EE9A1BB82338C0A600210258 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9A1BB62338C0A600210258 /* MainInterface.storyboard */; };
 		EE9A1BBC2338C0A600210258 /* InfoPanelExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A832338E432006487BC /* ShareViewController.swift */; };
 		EEBD0A8B23390E09006487BC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169AD9922500A3700DF6D47 /* CloudKit.framework */; };
 		EEBD0A8D23391225006487BC /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A8C23391225006487BC /* CloudService.swift */; };
+		EEBD0A9323393960006487BC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A9223393960006487BC /* NetworkService.swift */; };
 		EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -74,13 +76,17 @@
 		11D7EF4A2250088E00444321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F00907225767610055D548 /* PanelCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelCellController.swift; sourceTree = "<group>"; };
 		22DE8B82D3FC576BEF1D4300 /* Pods-InfoPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanel.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel.release.xcconfig"; sourceTree = "<group>"; };
+		67108C868570C9F986ABB7FD /* Pods-InfoPanelExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanelExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9B8C41369D437D26706F2A /* Pods-InfoPanelExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanelExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension.release.xcconfig"; sourceTree = "<group>"; };
+		DE5D86DE3C5F976FA9A5D975 /* Pods_InfoPanelExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanelExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = InfoPanelExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9A1BB72338C0A600210258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EE9A1BB92338C0A600210258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEBD0A832338E432006487BC /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InfoPanelExtension.entitlements; sourceTree = "<group>"; };
 		EEBD0A8C23391225006487BC /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
+		EEBD0A9223393960006487BC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEBD0A8B23390E09006487BC /* CloudKit.framework in Frameworks */,
+				17C1AD2B40471F24D0388A2F /* Pods_InfoPanelExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +191,8 @@
 			children = (
 				0D2AF64DC124690F9A93B6E0 /* Pods-InfoPanel.debug.xcconfig */,
 				22DE8B82D3FC576BEF1D4300 /* Pods-InfoPanel.release.xcconfig */,
+				67108C868570C9F986ABB7FD /* Pods-InfoPanelExtension.debug.xcconfig */,
+				9D9B8C41369D437D26706F2A /* Pods-InfoPanelExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 				EE9A1BB62338C0A600210258 /* MainInterface.storyboard */,
 				EEBD0A832338E432006487BC /* ShareViewController.swift */,
 				EEBD0A8C23391225006487BC /* CloudService.swift */,
+				EEBD0A9223393960006487BC /* NetworkService.swift */,
 				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
 			);
@@ -206,6 +216,7 @@
 				114E0BA72252029E0060AEA7 /* NMSSH.framework */,
 				1169AD9922500A3700DF6D47 /* CloudKit.framework */,
 				86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */,
+				DE5D86DE3C5F976FA9A5D975 /* Pods_InfoPanelExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE9A1BC02338C0A600210258 /* Build configuration list for PBXNativeTarget "InfoPanelExtension" */;
 			buildPhases = (
+				37CEDC83573AE3171DCC2693 /* [CP] Check Pods Manifest.lock */,
 				EE9A1BAE2338C0A600210258 /* Sources */,
 				EE9A1BAF2338C0A600210258 /* Frameworks */,
 				EE9A1BB02338C0A600210258 /* Resources */,
@@ -321,6 +333,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		37CEDC83573AE3171DCC2693 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InfoPanelExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C49DCA5609AF35BF7F6F6DE5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -384,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */,
+				EEBD0A9323393960006487BC /* NetworkService.swift in Sources */,
 				EEBD0A8D23391225006487BC /* CloudService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +626,7 @@
 		};
 		EE9A1BBE2338C0A600210258 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67108C868570C9F986ABB7FD /* Pods-InfoPanelExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = InfoPanelExtension/InfoPanelExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -612,6 +648,7 @@
 		};
 		EE9A1BBF2338C0A600210258 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D9B8C41369D437D26706F2A /* Pods-InfoPanelExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = InfoPanelExtension/InfoPanelExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
