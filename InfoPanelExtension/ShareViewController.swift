@@ -14,6 +14,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var tableView = UITableView()
     var cloudService = CloudService()
+    var networkService = NetworkService()
     let cellIdentifire = "Cell"
     
     //MARK: - View Load
@@ -37,7 +38,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     
-    //MARK: - TableVIew Delegate DataSourse
+    //MARK: - TableVIew Setup
     
     private func setupTableView() {
         let width = view.bounds.width
@@ -56,6 +57,8 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    //MARK: - TableView Delegate DataSourse
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cloudService.panelsArrey.count
     }
@@ -70,12 +73,15 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(cloudService.panelsArrey[indexPath.row].object(forKey: "address") as? String as Any)
+        let currentPanel = cloudService.panelsArrey[indexPath.row]
+        let address = currentPanel.object(forKey: "address") as! String
+        print(address)
+        loadAttachmentObject(host: address)
     }
     
     //MARK: - Get Attachment object
     
-    private func loadAttachmentObject() {
+    private func loadAttachmentObject(host: String) {
         guard let extensionContext = self.extensionContext else { return }
         let item = extensionContext.inputItems.first as? NSExtensionItem
         let attachment = item?.attachments?.first
@@ -91,8 +97,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let img = data as? UIImage {
                 imageData = img.pngData()
             }
-            //send image
-            print(imageData as Any)
+            self.networkService.sendImage(host: host, data: imageData)
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         })
     }
