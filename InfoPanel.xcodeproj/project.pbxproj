@@ -24,6 +24,7 @@
 		EE9A1BB82338C0A600210258 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9A1BB62338C0A600210258 /* MainInterface.storyboard */; };
 		EE9A1BBC2338C0A600210258 /* InfoPanelExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A832338E432006487BC /* ShareViewController.swift */; };
+		EEBD0A8B23390E09006487BC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169AD9922500A3700DF6D47 /* CloudKit.framework */; };
 		EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		EE9A1BB72338C0A600210258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EE9A1BB92338C0A600210258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEBD0A832338E432006487BC /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InfoPanelExtension.entitlements; sourceTree = "<group>"; };
 		EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEBD0A8B23390E09006487BC /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +189,7 @@
 		EE9A1BB32338C0A600210258 /* InfoPanelExtension */ = {
 			isa = PBXGroup;
 			children = (
+				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB62338C0A600210258 /* MainInterface.storyboard */,
 				EEBD0A832338E432006487BC /* ShareViewController.swift */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
@@ -584,6 +588,7 @@
 		EE9A1BBE2338C0A600210258 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = InfoPanelExtension/InfoPanelExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR7A3F4BM7;
 				INFOPLIST_FILE = InfoPanelExtension/Info.plist;
@@ -604,6 +609,7 @@
 		EE9A1BBF2338C0A600210258 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = InfoPanelExtension/InfoPanelExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR7A3F4BM7;
 				INFOPLIST_FILE = InfoPanelExtension/Info.plist;
