@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,9 +21,9 @@
 		11D7EF462250088E00444321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D7EF452250088E00444321 /* Assets.xcassets */; };
 		11F00908225767610055D548 /* PanelCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00907225767610055D548 /* PanelCellController.swift */; };
 		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		EE9A1BB52338C0A600210258 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A1BB42338C0A600210258 /* ShareViewController.swift */; };
 		EE9A1BB82338C0A600210258 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9A1BB62338C0A600210258 /* MainInterface.storyboard */; };
 		EE9A1BBC2338C0A600210258 /* InfoPanelExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A832338E432006487BC /* ShareViewController.swift */; };
 		EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -74,9 +74,9 @@
 		22DE8B82D3FC576BEF1D4300 /* Pods-InfoPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanel.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel.release.xcconfig"; sourceTree = "<group>"; };
 		86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = InfoPanelExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE9A1BB42338C0A600210258 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		EE9A1BB72338C0A600210258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EE9A1BB92338C0A600210258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEBD0A832338E432006487BC /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,8 +186,8 @@
 		EE9A1BB32338C0A600210258 /* InfoPanelExtension */ = {
 			isa = PBXGroup;
 			children = (
-				EE9A1BB42338C0A600210258 /* ShareViewController.swift */,
 				EE9A1BB62338C0A600210258 /* MainInterface.storyboard */,
+				EEBD0A832338E432006487BC /* ShareViewController.swift */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
 			);
 			path = InfoPanelExtension;
@@ -376,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE9A1BB52338C0A600210258 /* ShareViewController.swift in Sources */,
+				EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
