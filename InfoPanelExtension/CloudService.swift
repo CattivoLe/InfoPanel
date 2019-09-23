@@ -21,9 +21,12 @@ class CloudService {
         query.sortDescriptors = [nameDescriptor]
         
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
-            //print("Error - \(error?.localizedDescription ?? "Ok")")
-            
-            for record in records! {
+            guard error == nil else {
+                print(error?.localizedDescription as Any)
+                return
+            }
+            guard let records = records else { return }
+            for record in records {
                 self.panelsArrey.append(record)
             }
             finishFunc()

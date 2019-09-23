@@ -14,13 +14,26 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var tableView = UITableView()
     var cloudService = CloudService()
     
-    //MARK: - View did Load
+    //MARK: - View Load
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        cloudService.getPanels(finishFunc: finishLoadFunc)
+    }
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        setupView()
         setupTableView()
-        cloudService.getPanels(finishFunc: finishLoadFunc)
     }
+    
+    //MARK: - Setup View
+    
+    private func setupView() {
+        self.view.layer.cornerRadius = 30
+        self.view.layer.masksToBounds = true
+    }
+
     
     //MARK: - TableVIew Delegate DataSourse
     
@@ -36,11 +49,8 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func finishLoadFunc() {
-        tableView.reloadData()
-        print(cloudService.panelsArrey)
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            print("Panels - \(self.cloudService.panelsArrey)")
         }
     }
     
@@ -50,7 +60,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = .black
+        cell.backgroundColor = #colorLiteral(red: 0.1077648476, green: 0.1164580062, blue: 0.1289991438, alpha: 1)
         cell.textLabel?.textColor = .white
         cell.textLabel?.text = cloudService.panelsArrey[indexPath.row].object(forKey: "name") as? String
         return cell
@@ -60,6 +70,6 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
         print(cloudService.panelsArrey[indexPath.row].object(forKey: "address") as? String as Any)
     }
-    
+        
     
 }

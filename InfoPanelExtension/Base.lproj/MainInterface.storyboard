@@ -15,15 +15,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUM-9k-J4f">
-                                <rect key="frame" x="20" y="299" width="374" height="299"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUM-9k-J4f">
+                                <rect key="frame" x="53" y="277" width="308" height="352"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="308" id="CZ6-rl-dUy"/>
+                                    <constraint firstAttribute="height" constant="352" id="GbX-7Y-mog"/>
+                                </constraints>
                                 <connections>
-                                    <segue destination="hDt-TF-LcS" kind="embed" id="whV-Rz-HQu"/>
+                                    <segue destination="ci8-5S-LPF" kind="embed" id="Did-ZM-Xln"/>
                                 </connections>
                             </containerView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="kUM-9k-J4f" firstAttribute="centerY" secondItem="mIg-MU-BG2" secondAttribute="centerY" id="0hg-gI-j2v"/>
+                            <constraint firstItem="kUM-9k-J4f" firstAttribute="centerX" secondItem="mIg-MU-BG2" secondAttribute="centerX" id="7Ws-86-MFe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mIg-MU-BG2"/>
                     </view>
                 </viewController>
@@ -36,34 +42,14 @@
             <objects>
                 <viewController id="ci8-5S-LPF" customClass="ShareViewController" customModule="InfoPanelExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcC-l2-RN0">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="299"/>
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="352"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="FmN-mQ-MrG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C0m-PI-2DU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="635" y="90"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5R5-eS-nU1">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hDt-TF-LcS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="57U-0d-OYc">
-                        <rect key="frame" x="0.0" y="44" width="374" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ci8-5S-LPF" kind="relationship" relationship="rootViewController" id="RiH-Ha-yAB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LfI-wB-vOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="635" y="-276"/>
+            <point key="canvasLocation" x="636" y="-93"/>
         </scene>
     </scenes>
 </document>
