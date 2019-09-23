@@ -12,14 +12,14 @@ import CloudKit
 class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView = UITableView()
-    let testArray = ["Test cell 1", "Test cell 2", "Test cell 3","Test cell 4"]
+    var cloudService = CloudService()
     
     //MARK: - View did Load
     
     override func viewDidLoad() {
         super .viewDidLoad()
-        getPanels()
         setupTableView()
+        cloudService.getPanels(finishFunc: finishLoadFunc)
     }
     
     //MARK: - TableVIew Delegate DataSourse
@@ -35,37 +35,31 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.addSubview(tableView)
     }
     
+    private func finishLoadFunc() {
+        tableView.reloadData()
+        print(cloudService.panelsArrey)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            print("Panels - \(self.cloudService.panelsArrey)")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray.count
+        return cloudService.panelsArrey.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = .black
         cell.textLabel?.textColor = .white
-        cell.textLabel?.text = testArray[indexPath.row]
+        cell.textLabel?.text = cloudService.panelsArrey[indexPath.row].object(forKey: "name") as? String
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(testArray[indexPath.row])
+        print(cloudService.panelsArrey[indexPath.row].object(forKey: "address") as? String as Any)
     }
-    
-    func getPanels() {
-        let predicate = NSPredicate(value: true)
-        let publicDataBase = CKContainer.default().publicCloudDatabase
-        let query = CKQuery(recordType: "InfoPanels", predicate: predicate)
-        let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        query.sortDescriptors = [nameDescriptor]
-        
-        publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
-            print(records as Any)
-            print(error as Any)
-            print(error?.localizedDescription as Any)
-        }
-    }
-    
     
     
 }
