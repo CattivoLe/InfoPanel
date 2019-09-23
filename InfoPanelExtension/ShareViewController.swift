@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        getPanels()
         setupTableView()
     }
     
@@ -50,7 +52,19 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print(testArray[indexPath.row])
     }
     
-    
+    func getPanels() {
+        let predicate = NSPredicate(value: true)
+        let publicDataBase = CKContainer.default().publicCloudDatabase
+        let query = CKQuery(recordType: "InfoPanels", predicate: predicate)
+        let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        query.sortDescriptors = [nameDescriptor]
+        
+        publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
+            print(records as Any)
+            print(error as Any)
+            print(error?.localizedDescription as Any)
+        }
+    }
     
     
     

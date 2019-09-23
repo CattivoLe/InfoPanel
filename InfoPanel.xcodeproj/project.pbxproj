@@ -189,9 +189,9 @@
 		EE9A1BB32338C0A600210258 /* InfoPanelExtension */ = {
 			isa = PBXGroup;
 			children = (
-				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB62338C0A600210258 /* MainInterface.storyboard */,
 				EEBD0A832338E432006487BC /* ShareViewController.swift */,
+				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
 			);
 			path = InfoPanelExtension;
