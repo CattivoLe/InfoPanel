@@ -320,20 +320,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-InfoPanel/Pods-InfoPanel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMSSH.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-InfoPanel/Pods-InfoPanel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InfoPanel/Pods-InfoPanel-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InfoPanel/Pods-InfoPanel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F858CD624D22FD5391204729 /* [CP] Check Pods Manifest.lock */ = {
