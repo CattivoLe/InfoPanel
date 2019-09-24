@@ -17,14 +17,19 @@ class AttachmentService {
         guard let extensionContext = vc.extensionContext else { return }
         let item = extensionContext.inputItems.first as? NSExtensionItem
         let attachment = item?.attachments?.first
-        let contentType = kUTTypeImage as String
+        var contentType = kUTTypeURL as String
         var imageData: Data?
         
-        guard (attachment?.hasItemConformingToTypeIdentifier(contentType))! else { return }
+        if !(attachment?.hasItemConformingToTypeIdentifier(contentType))! {
+            contentType = kUTTypeImage as String
+        }
         attachment?.loadItem(forTypeIdentifier: contentType, completionHandler: { (data, error) in
             guard error == nil else {
                 print(error?.localizedDescription as Any)
                 return
+            }
+            if let data = data as? Data {
+                imageData = data
             }
             if let url = data as? URL {
                 imageData = try! Data(contentsOf: url)
