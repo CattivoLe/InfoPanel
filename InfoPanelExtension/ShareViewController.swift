@@ -51,8 +51,8 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func finishLoadFunc() {
+        tableView.reloadData()
         DispatchQueue.main.async {
-            self.tableView.reloadData()
         }
     }
     

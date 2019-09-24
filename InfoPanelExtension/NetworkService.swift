@@ -12,6 +12,9 @@ import NMSSH
 class NetworkService {
     
     private let imagePath = "/home/pi/Pictures/FromIPhone.jpg"
+    private let killOMX = "sudo pkill omxplayer"
+    private let killFbi = "sudo pkill fbi"
+    private let startFbi = "sudo fbi -T 1 -a --noverbose "
     
     //MARK: - Send image to phone
     
@@ -24,13 +27,26 @@ class NetworkService {
             session.sftp.connect()
         }
         guard let imageData = data else { return }
+        var success = false
         let existFile = session.sftp.fileExists(atPath: imagePath)
+        
         if existFile {
-            session.sftp.writeContents(imageData, toFileAtPath: imagePath)
+            success = session.sftp.writeContents(imageData, toFileAtPath: imagePath)
         } else {
-            session.sftp.appendContents(imageData, toFileAtPath: imagePath)
+            success = session.sftp.appendContents(imageData, toFileAtPath: imagePath)
         }
+        
+        if success {
+            openImage(session: session)
+        }
+        session.sftp.disconnect()
         session.disconnect()
+    }
+    
+    private func openImage(session: NMSSHSession) {
+        session.channel.execute(killFbi, error: nil)
+        session.channel.execute(killOMX, error: nil)
+        session.channel.execute("\(startFbi)\(imagePath)", error: nil)
     }
     
     
