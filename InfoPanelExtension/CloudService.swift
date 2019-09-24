@@ -13,6 +13,8 @@ class CloudService {
     
     var panelsArrey = [CKRecord]()
     
+    //MARK: - Get panels wrom ICloud
+    
     func getPanels(finishFunc: @escaping ()->()) {
         let predicate = NSPredicate(value: true)
         let publicDataBase = CKContainer.default().publicCloudDatabase

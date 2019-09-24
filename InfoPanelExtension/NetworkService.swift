@@ -13,6 +13,8 @@ class NetworkService {
     
     private let imagePath = "/home/pi/Pictures/FromIPhone.jpg"
     
+    //MARK: - Send image to phone
+    
     func sendImage(host:String, data: Data?) {
         
         let session = NMSSHSession(host: host, andUsername: "pi")

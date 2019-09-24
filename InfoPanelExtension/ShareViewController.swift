@@ -8,13 +8,13 @@
 
 import UIKit
 import CloudKit
-import MobileCoreServices
 
 class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView = UITableView()
     var cloudService = CloudService()
     var networkService = NetworkService()
+    var attachment = AttachmentService()
     let cellIdentifire = "Cell"
     
     //MARK: - View Load
@@ -23,7 +23,6 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super .viewWillAppear(animated)
         cloudService.getPanels(finishFunc: finishLoadFunc)
     }
-    
     override func viewDidLoad() {
         super .viewDidLoad()
         setupView()
@@ -75,31 +74,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
         let address = currentPanel.object(forKey: "address") as! String
-        print(address)
-        loadAttachmentObject(host: address)
-    }
-    
-    //MARK: - Get Attachment object
-    
-    private func loadAttachmentObject(host: String) {
-        guard let extensionContext = self.extensionContext else { return }
-        let item = extensionContext.inputItems.first as? NSExtensionItem
-        let attachment = item?.attachments?.first
-        let contentType = kUTTypeImage as String
-        var imageData: Data?
-        
-        guard (attachment?.hasItemConformingToTypeIdentifier(contentType))! else { return }
-        attachment?.loadItem(forTypeIdentifier: contentType, completionHandler: { (data, error) in
-            guard error == nil else { return }
-            if let url = data as? URL {
-                imageData = try! Data(contentsOf: url)
-            }
-            if let img = data as? UIImage {
-                imageData = img.pngData()
-            }
-            self.networkService.sendImage(host: host, data: imageData)
-            self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
-        })
+        attachment.loadAttachmentObject(host: address, vc: self, network: networkService)
     }
         
     
