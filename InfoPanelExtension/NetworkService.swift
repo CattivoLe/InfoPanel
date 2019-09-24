@@ -43,6 +43,7 @@ class NetworkService {
         session.disconnect()
     }
     
+    //MARK: - Open image Func
     private func openImage(session: NMSSHSession) {
         session.channel.execute(killFbi, error: nil)
         session.channel.execute(killOMX, error: nil)
