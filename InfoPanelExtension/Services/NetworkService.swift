@@ -37,7 +37,7 @@ class NetworkService {
         }
         
         if success {
-            print("File load ok")
+            TaptickFeedback.feedback(style: .succes)
             openImage(session: session)
         }
         session.sftp.disconnect()

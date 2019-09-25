@@ -61,6 +61,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     private func finishLoadFunc() {
         DispatchQueue.main.async {
+            TaptickFeedback.feedback(style: .succes)
             self.tableView.reloadData()
         }
     }
