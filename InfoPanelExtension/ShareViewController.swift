@@ -86,8 +86,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         spinner.startAnimating()
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
-        guard let address = currentPanel.address else { return }
-        attachment.loadAttachmentObject(host: address, vc: self, network: networkService)
+        attachment.loadAttachmentObject(panel: currentPanel, vc: self, network: networkService)
     }
     
     private func nameCell(panel: Panel) -> String {
