@@ -37,6 +37,7 @@ class AttachmentService {
             if let img = data as? UIImage {
                 imageData = img.pngData()
             }
+            print("Load attachment ok")
             network.sendImage(host: host, data: imageData)
             vc.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         })

@@ -59,6 +59,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: - TableView Delegate DataSourse
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Panel count - \(cloudService.panelsArrey.count)")
         return cloudService.panelsArrey.count
     }
     
@@ -75,6 +76,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let currentPanel = cloudService.panelsArrey[indexPath.row]
         let address = currentPanel.object(forKey: "address") as! String
         attachment.loadAttachmentObject(host: address, vc: self, network: networkService)
+        print("Host - \(address)")
     }
         
     

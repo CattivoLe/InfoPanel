@@ -37,6 +37,7 @@ class NetworkService {
         }
         
         if success {
+            print("File load ok")
             openImage(session: session)
         }
         session.sftp.disconnect()

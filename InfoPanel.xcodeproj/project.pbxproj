@@ -29,6 +29,7 @@
 		EEBD0A8D23391225006487BC /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A8C23391225006487BC /* CloudService.swift */; };
 		EEBD0A9323393960006487BC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A9223393960006487BC /* NetworkService.swift */; };
 		EEBD0A95233A07AD006487BC /* AttachmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A94233A07AD006487BC /* AttachmentService.swift */; };
+		EEBD0A97233B3DDE006487BC /* TaptickFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A96233B3DDE006487BC /* TaptickFeedback.swift */; };
 		EEC1DE4622EDC3C6007B5353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		EEBD0A8C23391225006487BC /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
 		EEBD0A9223393960006487BC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EEBD0A94233A07AD006487BC /* AttachmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentService.swift; sourceTree = "<group>"; };
+		EEBD0A96233B3DDE006487BC /* TaptickFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaptickFeedback.swift; sourceTree = "<group>"; };
 		EEC1DE4522EDC3C6007B5353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,13 +206,22 @@
 			children = (
 				EE9A1BB62338C0A600210258 /* MainInterface.storyboard */,
 				EEBD0A832338E432006487BC /* ShareViewController.swift */,
-				EEBD0A94233A07AD006487BC /* AttachmentService.swift */,
-				EEBD0A8C23391225006487BC /* CloudService.swift */,
-				EEBD0A9223393960006487BC /* NetworkService.swift */,
+				EEBD0A98233B3E3A006487BC /* Services */,
+				EEBD0A96233B3DDE006487BC /* TaptickFeedback.swift */,
 				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
 			);
 			path = InfoPanelExtension;
+			sourceTree = "<group>";
+		};
+		EEBD0A98233B3E3A006487BC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EEBD0A94233A07AD006487BC /* AttachmentService.swift */,
+				EEBD0A8C23391225006487BC /* CloudService.swift */,
+				EEBD0A9223393960006487BC /* NetworkService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FE217496ACF546B60F625693 /* Frameworks */ = {
@@ -422,6 +433,7 @@
 			files = (
 				EEBD0A95233A07AD006487BC /* AttachmentService.swift in Sources */,
 				EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */,
+				EEBD0A97233B3DDE006487BC /* TaptickFeedback.swift in Sources */,
 				EEBD0A9323393960006487BC /* NetworkService.swift in Sources */,
 				EEBD0A8D23391225006487BC /* CloudService.swift in Sources */,
 			);
