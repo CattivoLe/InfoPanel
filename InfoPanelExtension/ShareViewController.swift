@@ -44,7 +44,9 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let height = view.bounds.height
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: width, height: height), style: .plain)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        tableView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         tableView.backgroundColor = .black
+        tableView.alpha = 0.9
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
@@ -59,19 +61,19 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: - TableView Delegate DataSourse
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Panel count - \(cloudService.panelsArrey.count)")
         return cloudService.panelsArrey.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
-        cell.backgroundColor = #colorLiteral(red: 0.1077648476, green: 0.1164580062, blue: 0.1289991438, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         cell.textLabel?.textColor = .white
         cell.textLabel?.text = cloudService.panelsArrey[indexPath.row].object(forKey: "name") as? String
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        TaptickFeedback.feedback(style: .medium)
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
         let address = currentPanel.object(forKey: "address") as! String
