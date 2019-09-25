@@ -74,9 +74,10 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
+        let panel = cloudService.panelsArrey[indexPath.row]
         cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         cell.textLabel?.textColor = .white
-        cell.textLabel?.text = cloudService.panelsArrey[indexPath.row].object(forKey: "name") as? String
+        cell.textLabel?.text = nameCell(panel: panel)
         return cell
     }
     
@@ -88,6 +89,19 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let address = currentPanel.object(forKey: "address") as! String
         attachment.loadAttachmentObject(host: address, vc: self, network: networkService)
         print("Host - \(address)")
+    }
+    
+    private func nameCell(panel: CKRecord) -> String {
+        let name = panel.object(forKey: "name") as? String
+        let orient = panel.object(forKey: "orient") as? String
+        var prefix: String
+        if orient == "h" {
+            prefix = "Horisont"
+        } else {
+            prefix = "Vertical"
+        }
+        let fullName = "\(prefix) - \(name ?? "")"
+        return fullName
     }
         
     
