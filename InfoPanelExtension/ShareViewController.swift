@@ -15,6 +15,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var cloudService = CloudService()
     var networkService = NetworkService()
     var attachment = AttachmentService()
+    let spinner = UIActivityIndicatorView()
     let cellIdentifire = "Cell"
     
     //MARK: - View Load
@@ -25,15 +26,21 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     override func viewDidLoad() {
         super .viewDidLoad()
-        setupView()
         setupTableView()
+        setupViewSpinner()
     }
     
-    //MARK: - Setup View
+    //MARK: - Setup View & Spinner
     
-    private func setupView() {
+    private func setupViewSpinner() {
         self.view.layer.cornerRadius = 30
         self.view.layer.masksToBounds = true
+        let center = CGPoint(x: 100, y: 100)
+        let size = CGSize(width: 100, height: 100)
+        spinner.frame = CGRect(origin: center, size: size)
+        spinner.style = .large
+        spinner.color = .white
+        view.insertSubview(spinner, aboveSubview: tableView)
     }
 
     
@@ -74,6 +81,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         TaptickFeedback.feedback(style: .medium)
+        spinner.startAnimating()
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
         let address = currentPanel.object(forKey: "address") as! String
