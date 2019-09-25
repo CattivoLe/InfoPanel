@@ -86,21 +86,18 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         spinner.startAnimating()
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
-        let address = currentPanel.object(forKey: "address") as! String
+        guard let address = currentPanel.address else { return }
         attachment.loadAttachmentObject(host: address, vc: self, network: networkService)
-        print("Host - \(address)")
     }
     
-    private func nameCell(panel: CKRecord) -> String {
-        let name = panel.object(forKey: "name") as? String
-        let orient = panel.object(forKey: "orient") as? String
+    private func nameCell(panel: Panel) -> String {
         var prefix: String
-        if orient == "h" {
+        if panel.orient == .horisont  {
             prefix = "Horisont"
         } else {
             prefix = "Vertical"
         }
-        let fullName = "\(prefix) - \(name ?? "")"
+        let fullName = "\(prefix) - \(panel.name ?? "")"
         return fullName
     }
         
