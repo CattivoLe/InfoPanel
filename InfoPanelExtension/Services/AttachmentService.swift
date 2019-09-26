@@ -14,6 +14,7 @@ class AttachmentService {
     //MARK: - Load Attachment object from phone to server
     
     func loadAttachmentObject(panel: Panel, vc: UIViewController, network: NetworkService) {
+        
         guard let extensionContext = vc.extensionContext else { return }
         let item = extensionContext.inputItems.first as? NSExtensionItem
         let attachment = item?.attachments?.first
@@ -23,11 +24,9 @@ class AttachmentService {
         if !(attachment?.hasItemConformingToTypeIdentifier(contentType))! {
             contentType = kUTTypeImage as String
         }
+        
         attachment?.loadItem(forTypeIdentifier: contentType, completionHandler: { (data, error) in
-            guard error == nil else {
-                self.showAllert(title: "Error", message: error!.localizedDescription, controller: vc)
-                return
-            }
+            guard error == nil else { return }
             if let data = data as? Data {
                 imageData = data
             }
@@ -51,21 +50,13 @@ class AttachmentService {
         })
     }
     
-    //MARK: Allert func
-    
-    private func showAllert(title: String, message: String, controller: UIViewController) {
-        let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let allertAction = UIAlertAction(title: "Ok", style: .cancel)
-        allertController.addAction(allertAction)
-        controller.present(allertController, animated: true)
-    }
-    
     
 }
 
     //MARK: - Rotate Image
 
 extension UIImage {
+    
     func imageRotated(on degrees: CGFloat) -> UIImage {
         let degrees = round(degrees / 90) * 90
         let sameOrientationType = Int(degrees) % 180 == 0
@@ -87,5 +78,6 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image ?? self
     }
+    
 }
 

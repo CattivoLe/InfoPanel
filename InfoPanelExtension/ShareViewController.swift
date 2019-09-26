@@ -89,7 +89,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             cell.imageView?.image = UIImage(named: "v.jpeg")
         }
-        cell.textLabel?.text = panel.name
+        cell.textLabel?.text = " - \(panel.name ?? "")"
         return cell
     }
     
