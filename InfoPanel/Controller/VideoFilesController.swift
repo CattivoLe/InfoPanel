@@ -60,6 +60,7 @@ class VideoFilesController: UITableViewController {
             self.videoFilesArray = array
             session.disconnect()
             DispatchQueue.main.async {
+                TaptickFeedback.feedback(style: .light)
                 self.tableView.reloadData()
             }
         }

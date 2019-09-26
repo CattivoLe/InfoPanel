@@ -114,6 +114,7 @@ class StartViewController: UITableViewController {
         default:
             return
         }
+        TaptickFeedback.feedback(style: .succes)
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "Control", sender: self)
     }

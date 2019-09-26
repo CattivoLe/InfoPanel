@@ -63,16 +63,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func playVideoButtonPressed(_ sender: UIButton) {
         if panelAvailable {
+            TaptickFeedback.feedback(style: .medium)
             showVideoFiles()
         }
     }
     @IBAction func playVideoButtonLongPress(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
+            TaptickFeedback.feedback(style: .heavy)
             allert(message: NSLocalizedString("Stop video playback?", comment: ""), okTitle: NSLocalizedString("Stop", comment: ""), nameFunc: stopVideo)
         }
     }
     @IBAction func resetButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
+            TaptickFeedback.feedback(style: .heavy)
             allert(message: NSLocalizedString("Panel will be reloaded", comment: ""), okTitle: NSLocalizedString("Reboot", comment: "")) {
                 self.rebootPanel()
             }
@@ -80,6 +83,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func cancelImagePressed(_ sender: UIButton) {
         if panelAvailable {
+            TaptickFeedback.feedback(style: .medium)
             allert(message: NSLocalizedString("Current image will be reset", comment: ""), okTitle: NSLocalizedString("Reset", comment: "")) {
                 self.cleanScreen()
             }
@@ -89,6 +93,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Загрузка картинки на панель
     @IBAction func loadDataPressed(_ sender: UIButton) {
         if dataAvailable {
+            TaptickFeedback.feedback(style: .medium)
             activityIndicator.startAnimating()
             DispatchQueue.global(qos: .utility).async {
                 guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
@@ -99,6 +104,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func loadImageLongPress(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
+            TaptickFeedback.feedback(style: .heavy)
             allert(message: NSLocalizedString("Close the picture?", comment: ""), okTitle: NSLocalizedString("Close", comment: ""), nameFunc: stopShowImage)
         }
     }
@@ -236,7 +242,9 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
-extension UIImage { // Поворачивает изображение
+    //MARK: - Image Rotate
+
+extension UIImage {
     func imageRotated(on degrees: CGFloat) -> UIImage {
         let degrees = round(degrees / 90) * 90
         let sameOrientationType = Int(degrees) % 180 == 0
