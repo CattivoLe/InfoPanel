@@ -25,7 +25,7 @@ class AttachmentService {
         }
         attachment?.loadItem(forTypeIdentifier: contentType, completionHandler: { (data, error) in
             guard error == nil else {
-                print(error?.localizedDescription as Any)
+                self.showAllert(title: "Error", message: error!.localizedDescription, controller: vc)
                 return
             }
             if let data = data as? Data {
@@ -49,6 +49,15 @@ class AttachmentService {
             network.sendImage(host: address, data: finalImage)
             vc.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         })
+    }
+    
+    //MARK: Allert func
+    
+    private func showAllert(title: String, message: String, controller: UIViewController) {
+        let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let allertAction = UIAlertAction(title: "Ok", style: .cancel)
+        allertController.addAction(allertAction)
+        controller.present(allertController, animated: true)
     }
     
     
