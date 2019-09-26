@@ -66,6 +66,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             showVideoFiles()
         }
     }
+    @IBAction func playVideoButtonLongPress(_ sender: UILongPressGestureRecognizer) {
+        if panelAvailable {
+            allert(message: NSLocalizedString("Stop video playback?", comment: ""), okTitle: NSLocalizedString("Stop", comment: ""), nameFunc: stopVideo)
+        }
+    }
     @IBAction func resetButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
         if panelAvailable {
             allert(message: NSLocalizedString("Panel will be reloaded", comment: ""), okTitle: NSLocalizedString("Reboot", comment: "")) {
@@ -90,6 +95,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 guard let image = UIImage(data: self.dataToSend)?.imageRotated(on: self.cornerOrient).pngData() else {return }
                 self.network.sendDataToSeerver(session: session, data: image, indicator: self.activityIndicator)
             }
+        }
+    }
+    @IBAction func loadImageLongPress(_ sender: UILongPressGestureRecognizer) {
+        if panelAvailable {
+            allert(message: NSLocalizedString("Close the picture?", comment: ""), okTitle: NSLocalizedString("Close", comment: ""), nameFunc: stopShowImage)
         }
     }
     
@@ -126,6 +136,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             session.channel.execute("sudo pkill omxplayer", error: nil)
             //session.channel.execute("sudo pkill pcmanfm", error: nil) // Закрыть файловый менеджер
             session.channel.execute("nohup omxplayer --no-osd --loop /home/pi/Videos/Welcome.mp4 > /dev/null &", error: nil) // Default Video
+        }
+        self.imageView.image = cornerOrient == 90 ? #imageLiteral(resourceName: "OnlineV") : #imageLiteral(resourceName: "OnlineH")
+    }
+    private func stopVideo() {
+        checkOrient(panel: panel, cof: 2)
+        DispatchQueue.global(qos: .utility).async {
+            guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
+            session.channel.execute("sudo pkill omxplayer", error: nil)
+        }
+        self.imageView.image = cornerOrient == 90 ? #imageLiteral(resourceName: "OnlineV") : #imageLiteral(resourceName: "OnlineH")
+    }
+    private func stopShowImage() {
+        checkOrient(panel: panel, cof: 2)
+        DispatchQueue.global(qos: .utility).async {
+            guard let session = self.network.connectToServer(address: self.panel?.address) else {return}
+            session.channel.execute("sudo pkill fbi", error: nil)
         }
         self.imageView.image = cornerOrient == 90 ? #imageLiteral(resourceName: "OnlineV") : #imageLiteral(resourceName: "OnlineH")
     }

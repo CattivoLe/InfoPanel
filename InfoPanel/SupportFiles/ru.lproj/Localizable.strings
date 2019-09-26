@@ -12,6 +12,10 @@
 
 "Panel will be reloaded" = "Панель будет перезагружена";
 "Current image will be reset" = "Текущее изображение будет сброшено";
+"Stop video playback?" = "Остановить воспроизведение видео?";
+"Close the picture?" = "Закрыть картинку";
+"Close" = "Закрыть";
+"Stop" = "Остановить";
 "Reboot" = "Перезагрузить";
 "Reset" = "Сбросить";
 
