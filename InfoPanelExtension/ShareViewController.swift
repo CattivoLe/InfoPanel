@@ -84,7 +84,12 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         default:
             cell.textLabel?.textColor = #colorLiteral(red: 0.9032962322, green: 0.3431209326, blue: 0.02910011634, alpha: 1)
         }
-        cell.textLabel?.text = nameCell(panel: panel)
+        if panel.orient != .vertical {
+            cell.imageView?.image = UIImage(named: "h.jpeg")
+        } else {
+            cell.imageView?.image = UIImage(named: "v.jpeg")
+        }
+        cell.textLabel?.text = panel.name
         return cell
     }
     
@@ -94,17 +99,6 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
         let currentPanel = cloudService.panelsArrey[indexPath.row]
         attachment.loadAttachmentObject(panel: currentPanel, vc: self, network: networkService)
-    }
-    
-    private func nameCell(panel: Panel) -> String {
-        var prefix: String
-        if panel.orient == .horisont  {
-            prefix = "Horisont"
-        } else {
-            prefix = "Vertical"
-        }
-        let fullName = "\(prefix) - \(panel.name ?? "")"
-        return fullName
     }
         
     

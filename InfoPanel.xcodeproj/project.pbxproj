@@ -22,6 +22,8 @@
 		11F00908225767610055D548 /* PanelCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00907225767610055D548 /* PanelCellController.swift */; };
 		17C1AD2B40471F24D0388A2F /* Pods_InfoPanelExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5D86DE3C5F976FA9A5D975 /* Pods_InfoPanelExtension.framework */; };
 		46731E0E7C595A17305174F5 /* Pods_InfoPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		EE44BD36233CB70200E91B06 /* h.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EE44BD34233CB70100E91B06 /* h.jpeg */; };
+		EE44BD37233CB70200E91B06 /* v.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EE44BD35233CB70200E91B06 /* v.jpeg */; };
 		EE9A1BB82338C0A600210258 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9A1BB62338C0A600210258 /* MainInterface.storyboard */; };
 		EE9A1BBC2338C0A600210258 /* InfoPanelExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EEBD0A842338E432006487BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD0A832338E432006487BC /* ShareViewController.swift */; };
@@ -82,6 +84,8 @@
 		86A904EFC5FA8EB43C9799A4 /* Pods_InfoPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9B8C41369D437D26706F2A /* Pods-InfoPanelExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoPanelExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoPanelExtension/Pods-InfoPanelExtension.release.xcconfig"; sourceTree = "<group>"; };
 		DE5D86DE3C5F976FA9A5D975 /* Pods_InfoPanelExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoPanelExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE44BD34233CB70100E91B06 /* h.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h.jpeg; sourceTree = "<group>"; };
+		EE44BD35233CB70200E91B06 /* v.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = v.jpeg; sourceTree = "<group>"; };
 		EE9A1BB22338C0A600210258 /* InfoPanelExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = InfoPanelExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9A1BB72338C0A600210258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EE9A1BB92338C0A600210258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,6 +205,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EE44BD38233CB70900E91B06 /* ImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				EE44BD35233CB70200E91B06 /* v.jpeg */,
+				EE44BD34233CB70100E91B06 /* h.jpeg */,
+			);
+			path = ImageCell;
+			sourceTree = "<group>";
+		};
 		EE9A1BB32338C0A600210258 /* InfoPanelExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +221,7 @@
 				EEBD0A832338E432006487BC /* ShareViewController.swift */,
 				EEBD0A98233B3E3A006487BC /* Services */,
 				EEBD0A96233B3DDE006487BC /* TaptickFeedback.swift */,
+				EE44BD38233CB70900E91B06 /* ImageCell */,
 				EEBD0A8A23390E05006487BC /* InfoPanelExtension.entitlements */,
 				EE9A1BB92338C0A600210258 /* Info.plist */,
 			);
@@ -340,6 +354,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE44BD36233CB70200E91B06 /* h.jpeg in Resources */,
+				EE44BD37233CB70200E91B06 /* v.jpeg in Resources */,
 				EE9A1BB82338C0A600210258 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
