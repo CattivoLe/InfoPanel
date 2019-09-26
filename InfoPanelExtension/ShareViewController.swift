@@ -76,7 +76,14 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
         let panel = cloudService.panelsArrey[indexPath.row]
         cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        cell.textLabel?.textColor = .white
+        switch panel.group {
+        case .blue:
+            cell.textLabel?.textColor = #colorLiteral(red: 0.04475270212, green: 0.4369654357, blue: 0.7193379998, alpha: 1)
+        case .green:
+            cell.textLabel?.textColor = #colorLiteral(red: 0.1933380365, green: 0.7166928649, blue: 0.03345341235, alpha: 1)
+        default:
+            cell.textLabel?.textColor = #colorLiteral(red: 0.9032962322, green: 0.3431209326, blue: 0.02910011634, alpha: 1)
+        }
         cell.textLabel?.text = nameCell(panel: panel)
         return cell
     }

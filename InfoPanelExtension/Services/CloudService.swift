@@ -23,7 +23,8 @@ class CloudService {
         let publicDataBase = CKContainer.default().publicCloudDatabase
         let query = CKQuery(recordType: "InfoPanels", predicate: predicate)
         let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        query.sortDescriptors = [nameDescriptor]
+        let groupDescriptor = NSSortDescriptor(key: "group", ascending: false)
+        query.sortDescriptors = [groupDescriptor, nameDescriptor]
         
         publicDataBase.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {
@@ -48,16 +49,30 @@ struct Panel {
     var name: String?
     var address: String?
     var orient: Orient
+    var group: Group?
     
     enum Orient {
         case vertical
         case horisont
+    }
+    enum Group {
+        case blue
+        case green
+        case orange
     }
     
     init (cloudRecord: CKRecord) {
         
         self.name = cloudRecord.object(forKey: "name") as? String
         self.address = cloudRecord.object(forKey: "address") as? String
+        switch cloudRecord.object(forKey: "group") as? String {
+        case "blue":
+            self.group = .blue
+        case "green":
+            self.group = .green
+        default:
+            self.group = .orange
+        }
         
         if cloudRecord.object(forKey: "orient") as? String == "h" {
             self.orient = .horisont
