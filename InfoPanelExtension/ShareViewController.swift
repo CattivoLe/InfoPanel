@@ -38,8 +38,7 @@ class ShareViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let center = CGPoint(x: 100, y: 100)
         let size = CGSize(width: 100, height: 100)
         spinner.frame = CGRect(origin: center, size: size)
-        spinner.style = .large
-        spinner.color = .white
+        spinner.style = UIActivityIndicatorView.Style.whiteLarge
         view.insertSubview(spinner, aboveSubview: tableView)
     }
 
